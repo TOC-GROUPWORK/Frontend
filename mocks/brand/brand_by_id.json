@@ -1,0 +1,55 @@
+{
+    "data" : {
+        "model": "iPhone 13 Pro Max",
+        "size": "1 TB",
+        "type": "รายเดือน",
+        "normalprice": "62,900",
+        "detail": "(ย้ายค่ายลดเพิ่ม  แพ็ก 699-1,499 ลดเพิ่ม 1,000แพ็ก 1,699 ลดเพิ่ม 2,000)",
+        "promotions": [
+            {
+                "specialprice": "58,900",
+                "paid": "2,000",
+                "package": "699"
+            },
+            {
+                "specialprice": "55,900",
+                "paid": "3,000",
+                "package": "1,199"
+            },
+            {
+                "specialprice": "54,400",
+                "paid": "4,000",
+                "package": "1,499"
+            },
+            {
+                "specialprice": "53,400",
+                "paid": "4,500",
+                "package": "1,699"
+            }
+        ],
+        "type_18": "สัญญา 18 เดือน",
+        "detail_18": "(ย้ายค่ายลดเพิ่ม  แพ็ก 699-1,499 ลดเพิ่ม 1,000แพ็ก 1,699 ลดเพิ่ม 2,000)",
+        "promotions_18": [
+            {
+                "specialprice": "57,400",
+                "paid": "2,000",
+                "package": "699"
+            },
+            {
+                "specialprice": "53,600",
+                "paid": "4,000",
+                "package": "1,199"
+            },
+            {
+                "specialprice": "50,700",
+                "paid": "5,000",
+                "package": "1,499"
+            },
+            {
+                "specialprice": "49,700",
+                "paid": "6,000",
+                "package": "1,699"
+            }
+        ]
+    }
+}

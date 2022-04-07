@@ -1,0 +1,44 @@
+{
+    "data" : [
+        {
+            "id": "1001",
+            "name": "ASUS",
+            "img": "https://inwfile.com/s-fi/johgcv.jpg"
+        },
+        {
+            "id": "1002",
+            "name": "Apple",
+            "img": "https://www.dezeenjobs.com/wp-content/uploads/2018/07/apple-400x400.png"
+        },
+        {
+            "id": "1003",
+            "name": "Huawei",
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLUYvibR5Xqb24Z6cA18X3PycGa1NtUkeKXQ&usqp=CAU"
+        },
+        {
+            "id": "1004",
+            "name": "Lenovo",
+            "img": "https://cf.shopee.co.th/file/dcbfdd27d65fd07e9930c44145f2d525"
+        },
+        {
+            "id": "1005",
+            "name": "Nokia",
+            "img": "https://logos-world.net/wp-content/uploads/2020/09/Nokia-Logo.png"
+        },
+        {
+            "id": "1006",
+            "name": "OPPO",
+            "img": "https://pbs.twimg.com/media/D7GAgu1UwAIudq8.jpg"
+        },
+        {
+            "id": "1007",
+            "name": "Samsung",
+            "img": "https://images.samsung.com/is/image/samsung/assets/th/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$"
+        },
+        {
+            "id": "1008",
+            "name": "Vivo",
+            "img": "https://www.metalbridges.com/wp-content/uploads/2020/06/vivo-logo-1024x537.jpg"
+        }
+    ]
+}
