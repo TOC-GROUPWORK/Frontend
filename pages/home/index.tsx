@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material"
 import { Brand } from "../../components/Cards";
+import SildeBanner from "../../components/SildeBanner"
 
 const Home = () => {
 
@@ -17,6 +18,7 @@ const Home = () => {
                 paddingY={'2em'}
                 width={'60%'}
             >
+                <SildeBanner/>
                 <Typography
                     variant={"h6"}
                     textAlign={"center"}
@@ -38,7 +40,7 @@ const Home = () => {
                     { data && data.length > 0 ? (
                         data.map((brand: { id: string; name: string; img: string; }) => {
                             return(
-                                <Grid 
+                                <Grid
                                     item
                                     xs={4}
                                     key={brand.id}
