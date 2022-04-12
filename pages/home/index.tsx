@@ -1,7 +1,12 @@
 import { Box, Grid, Typography } from "@mui/material"
+
+import SlideBanner from "../../components/SlideBanner"
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Brand, CardProps } from "../../components/Cards";
 import SearchBar from "../../components/Searchbar";
+
+const SLIDE_COUNT = 5; // fix 5 pictures -> can change later or get form api
+const slides = Array.from(Array(SLIDE_COUNT).keys());
 
 const Home = () => {
 
@@ -40,6 +45,7 @@ const Home = () => {
                 paddingY={'2em'}
                 width={'60%'}
             >
+                <SlideBanner slides={slides} />
                 <Typography
                     variant={"h6"}
                     textAlign={"center"}
@@ -61,7 +67,7 @@ const Home = () => {
                     { filterBrands && filterBrands.length > 0 ? (
                         filterBrands.map((brand: { id: string; name: string; img: string; }) => {
                             return(
-                                <Grid 
+                                <Grid
                                     item
                                     xs={4}
                                     key={brand.id}
@@ -78,7 +84,7 @@ const Home = () => {
                                 )
                         })
                         ):(
-                            <Typography>No brands found :(</Typography>
+                            <Typography>No brands found</Typography>
                     )}
                 </Grid>
             </Box>
