@@ -5,6 +5,9 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { Brand, CardProps } from "../../components/Cards";
 import SearchBar from "../../components/Searchbar";
 
+const SLIDE_COUNT = 5; // fix 5 pictures -> can change later or get form api
+const slides = Array.from(Array(SLIDE_COUNT).keys());
+
 const Home = () => {
 
     const { data } = require('/mocks/brand/brand_all.json');
@@ -42,7 +45,7 @@ const Home = () => {
                 paddingY={'2em'}
                 width={'60%'}
             >
-                <SlideBanner/>
+                <SlideBanner slides={slides} />
                 <Typography
                     variant={"h6"}
                     textAlign={"center"}
