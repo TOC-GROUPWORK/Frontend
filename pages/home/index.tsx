@@ -1,9 +1,32 @@
 import { Box, Grid, Typography } from "@mui/material"
-import { Brand } from "../../components/Cards";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { Brand, CardProps } from "../../components/Cards";
+import SearchBar from "../../components/Searchbar";
 
 const Home = () => {
 
     const { data } = require('/mocks/brand/brand_all.json');
+    const [filter, setFilter] = useState<string>('');
+
+    const filterBrand = (data:CardProps[], filter:string) => {
+        if(!filter){
+            return data;
+        }
+        return data.filter((brand) => {
+            const brandName = brand.name.toLowerCase();
+            return brandName.includes(filter.toLowerCase());
+        })
+    }
+
+    const filterBrands = filterBrand(data,filter);
+
+    function handleChange(event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>){
+        setFilter(event.target.value);
+    };
+
+    // useEffect(()=>{
+    //     console.log(filter);
+    // },[filter])
 
     return (
         <Box
@@ -24,7 +47,7 @@ const Home = () => {
                     เลือกแบรนด์
                 </Typography>
 
-                {/* TODO: Searchbar */}
+                <SearchBar val={filter} func={handleChange} />
 
                 <Grid
                     container
@@ -35,8 +58,8 @@ const Home = () => {
                     columns={{ xs: 4, sm: 8, md: 12 }}
                     paddingTop={'3em'}
                 >
-                    { data && data.length > 0 ? (
-                        data.map((brand: { id: string; name: string; img: string; }) => {
+                    { filterBrands && filterBrands.length > 0 ? (
+                        filterBrands.map((brand: { id: string; name: string; img: string; }) => {
                             return(
                                 <Grid 
                                     item
@@ -55,7 +78,7 @@ const Home = () => {
                                 )
                         })
                         ):(
-                            <Typography>Failed to load brand properly</Typography>
+                            <Typography>No brands found :(</Typography>
                     )}
                 </Grid>
             </Box>
