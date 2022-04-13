@@ -1,11 +1,12 @@
-import { Box, Grid, Typography } from "@mui/material";
-import { Brand } from "../../components/Cards";
-import { AppProps } from "next/app";
-import { BrandProps } from "../../interfaces";
+import { Box, Typography, Grid } from "@mui/material";
+import brands from "..";
+import { Brand } from "../../../components/Cards";
+import { PhoneProps } from "../../../interfaces";
 
-const Home: React.FC<BrandProps> = ({ brands }) => {
-  // const { data } = brands;
-  console.log(brands);
+const PhonePage: React.FC<PhoneProps> = ({ phones }) => {
+  // const {data} = props;
+  // console.log(phones);
+
   return (
     <Box bgcolor="#9c9edd">
       {/* TODO: Slide Banner */}
@@ -17,7 +18,7 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
         width={"60%"}
       >
         <Typography variant={"h6"} textAlign={"center"}>
-          เลือกแบรนด์
+          เลือกมือถือ
         </Typography>
 
         {/* TODO: Searchbar */}
@@ -31,8 +32,8 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
           columns={{ xs: 4, sm: 8, md: 12 }}
           paddingTop={"3em"}
         >
-          {brands && brands.length > 0 ? (
-            brands.map((brand: { id: string; name: string; img: string }) => {
+          {phones && phones.length > 0 ? (
+            phones.map((brand: { id: string; name: string; img: string }) => {
               return (
                 <Grid
                   item
@@ -59,14 +60,33 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
   );
 };
 
-//Fetching Data on Server side
-export const getStaticProps = async () => {
-  const { data } = await require("../../mocks/brand/brand_all.json");
+//Required for serverside rendering
+export const getStaticPaths = async () => {
+  return {
+    fallback: true,
+    paths: [
+      {
+        params: {
+          phoneId: "1",
+        },
+      },
+    ],
+  };
+};
+
+export const getStaticProps = async (context: any) => {
+  const brandId = context.params.brandId;
+
+  //Fetch Data HERE
+
+  //Mockup
+  const { data } = require("../../../mocks/brand/brand_phones.json");
+
   return {
     props: {
-      brands: data,
+      phones: data,
     },
   };
 };
 
-export default Home;
+export default PhonePage;
