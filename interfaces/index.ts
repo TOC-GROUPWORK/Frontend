@@ -11,3 +11,7 @@ export interface BrandProps {
 export interface PhoneProps {
     phones : CardProps[];
 }
+
+export interface PhoneDetailProps {
+    
+}
