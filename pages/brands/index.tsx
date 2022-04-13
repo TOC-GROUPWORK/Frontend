@@ -1,13 +1,43 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { Brand } from "../../components/Cards";
 import { AppProps } from "next/app";
-import { BrandProps } from "../../interfaces";
+import { BrandProps, CardProps } from "../../interfaces";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import SlideBanner from "../../components/SlideBanner";
+import SearchBar from "../../components/Searchbar";
+
+const SLIDE_COUNT = 5; // fix 5 pictures -> can change later or get form api
+const slides = Array.from(Array(SLIDE_COUNT).keys());
 
 const Home: React.FC<BrandProps> = ({ brands }) => {
   // const { data } = brands;
-  console.log(brands);
+  // console.log(brands);
+  const [filter, setFilter] = useState<string>("");
+
+  const filterBrand = (brands: CardProps[], filter: string) => {
+    if (!filter) {
+      return brands;
+    }
+    return brands.filter((brand) => {
+      const brandName = brand.name.toLowerCase();
+      return brandName.includes(filter.toLowerCase());
+    });
+  };
+
+  const filterBrands = filterBrand(brands, filter);
+
+  function handleChange(
+    event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) {
+    setFilter(event.target.value);
+  }
+
+  // useEffect(()=>{
+  //     console.log(filter);
+  // },[filter])
+
   return (
-    <Box bgcolor="#9c9edd">
+    <Box bgcolor="#9c9edd" sx={{ minHeight: "100vh" }}>
       {/* TODO: Slide Banner */}
       <Box
         alignItems={"center"}
@@ -16,11 +46,12 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
         paddingY={"2em"}
         width={"60%"}
       >
+        <SlideBanner slides={slides} />
         <Typography variant={"h6"} textAlign={"center"}>
           เลือกแบรนด์
         </Typography>
 
-        {/* TODO: Searchbar */}
+        <SearchBar val={filter} func={handleChange} />
 
         <Grid
           container
@@ -31,8 +62,8 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
           columns={{ xs: 4, sm: 8, md: 12 }}
           paddingTop={"3em"}
         >
-          {brands && brands.length > 0 ? (
-            brands.map((brand: { id: string; name: string; img: string }) => {
+          {filterBrands && filterBrands.length > 0 ? (
+            filterBrands.map((brand: CardProps) => {
               return (
                 <Grid
                   item
@@ -51,7 +82,7 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
               );
             })
           ) : (
-            <Typography>Failed to load brand properly</Typography>
+            <Typography>No brands found</Typography>
           )}
         </Grid>
       </Box>

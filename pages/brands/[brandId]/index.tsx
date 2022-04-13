@@ -1,14 +1,39 @@
 import { Box, Typography, Grid } from "@mui/material";
 import brands from "..";
 import { Brand } from "../../../components/Cards";
-import { PhoneProps } from "../../../interfaces";
+import { PhoneProps, CardProps } from "../../../interfaces";
+import SearchBar from "../../../components/Searchbar";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import SlideBanner from "../../../components/SlideBanner";
+
+const SLIDE_COUNT = 5; // fix 5 pictures -> can change later or get form api
+const slides = Array.from(Array(SLIDE_COUNT).keys());
 
 const PhonePage: React.FC<PhoneProps> = ({ phones }) => {
   // const {data} = props;
   // console.log(phones);
+  const [filter, setFilter] = useState<string>("");
+
+  const filterBrand = (brands: CardProps[], filter: string) => {
+    if (!filter) {
+      return brands;
+    }
+    return brands.filter((brand) => {
+      const brandName = brand.name.toLowerCase();
+      return brandName.includes(filter.toLowerCase());
+    });
+  };
+
+  const filterPhones = filterBrand(phones, filter);
+
+  function handleChange(
+    event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) {
+    setFilter(event.target.value);
+  }
 
   return (
-    <Box bgcolor="#9c9edd">
+    <Box bgcolor="#9c9edd" sx={{ minHeight: "100vh" }}>
       {/* TODO: Slide Banner */}
       <Box
         alignItems={"center"}
@@ -17,11 +42,13 @@ const PhonePage: React.FC<PhoneProps> = ({ phones }) => {
         paddingY={"2em"}
         width={"60%"}
       >
+        <SlideBanner slides={slides} />
         <Typography variant={"h6"} textAlign={"center"}>
           เลือกมือถือ
         </Typography>
 
         {/* TODO: Searchbar */}
+        <SearchBar val={filter} func={handleChange} />
 
         <Grid
           container
@@ -32,27 +59,29 @@ const PhonePage: React.FC<PhoneProps> = ({ phones }) => {
           columns={{ xs: 4, sm: 8, md: 12 }}
           paddingTop={"3em"}
         >
-          {phones && phones.length > 0 ? (
-            phones.map((brand: { id: string; name: string; img: string }) => {
-              return (
-                <Grid
-                  item
-                  xs={4}
-                  key={brand.id}
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <Brand
-                    id={brand.id}
-                    name={brand.name}
-                    img={brand.img}
-                    // key={brand.id}
-                  />
-                </Grid>
-              );
-            })
+          {filterPhones && filterPhones.length > 0 ? (
+            filterPhones.map(
+              (brand: { id: string; name: string; img: string }) => {
+                return (
+                  <Grid
+                    item
+                    xs={4}
+                    key={brand.id}
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Brand
+                      id={brand.id}
+                      name={brand.name}
+                      img={brand.img}
+                      // key={brand.id}
+                    />
+                  </Grid>
+                );
+              }
+            )
           ) : (
-            <Typography>Failed to load brand properly</Typography>
+            <Typography>Failed to load phone properly</Typography>
           )}
         </Grid>
       </Box>
@@ -67,7 +96,7 @@ export const getStaticPaths = async () => {
     paths: [
       {
         params: {
-          phoneId: "1",
+          brandId: "Apple",
         },
       },
     ],
