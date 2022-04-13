@@ -1,10 +1,11 @@
 import { Box, Typography, Grid } from "@mui/material";
 import brands from "..";
-import { Brand } from "../../../components/Cards";
+import { Phone } from "../../../components/Cards";
 import { PhoneProps, CardProps } from "../../../interfaces";
 import SearchBar from "../../../components/Searchbar";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import SlideBanner from "../../../components/SlideBanner";
+import { useRouter } from "next/router";
 
 const SLIDE_COUNT = 5; // fix 5 pictures -> can change later or get form api
 const slides = Array.from(Array(SLIDE_COUNT).keys());
@@ -12,6 +13,7 @@ const slides = Array.from(Array(SLIDE_COUNT).keys());
 const PhonePage: React.FC<PhoneProps> = ({ phones }) => {
   // const {data} = props;
   // console.log(phones);
+  const router = useRouter();
   const [filter, setFilter] = useState<string>("");
 
   const filterBrand = (brands: CardProps[], filter: string) => {
@@ -44,7 +46,7 @@ const PhonePage: React.FC<PhoneProps> = ({ phones }) => {
       >
         <SlideBanner slides={slides} />
         <Typography variant={"h6"} textAlign={"center"}>
-          เลือกมือถือ
+          {router.query.brandId}
         </Typography>
 
         {/* TODO: Searchbar */}
@@ -70,7 +72,7 @@ const PhonePage: React.FC<PhoneProps> = ({ phones }) => {
                     justifyContent="center"
                     alignItems="center"
                   >
-                    <Brand
+                    <Phone
                       id={brand.id}
                       name={brand.name}
                       img={brand.img}
