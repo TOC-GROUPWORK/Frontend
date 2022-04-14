@@ -46,13 +46,25 @@ const PhoneDetail = () => {
   };
 
   return (
-    <Box bgcolor="#FFFFFF" sx={{ minHeight: "100vh" }}>
+    <Box
+      sx={{
+        background:
+          "linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(190,72,183,1) 100%)",
+        minHeight: "100vh", py:3
+      }}
+    >
       <Box
         alignItems={"center"}
         justifyContent={"center"}
         marginX={"auto"}
         paddingY={"2em"}
+        paddingX={"2em"}
         width={"60%"}
+        bgcolor="#FFFFFF"
+        sx={{
+          borderRadius: '4px'
+        }}
+
       >
         <Box sx={{ my: 1 }}>
           <Typography variant={"h4"} textAlign={"center"}>
@@ -64,10 +76,10 @@ const PhoneDetail = () => {
         </Box>
 
         {/* Grid 2 columns */}
-        <Grid container spacing={2} sx={{mt:2}}>
+        <Grid container spacing={2} sx={{ mt: 2 }}>
           {/* left column */}
           <Grid item xs={6}>
-            <Box sx={{px:10}}>
+            <Box sx={{ px: 10 }}>
               <Carousel autoPlay infiniteLoop swipeable emulateTouch>
                 {MOCK_PHONE_DATA.pictures.map((src, index) => {
                   return (
