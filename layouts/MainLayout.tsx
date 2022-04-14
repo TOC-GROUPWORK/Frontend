@@ -1,8 +1,8 @@
-import navBar from "../components/navBar";
+import NavBar from "../components/Navbar"
 
 const MainLayout = ({ children }: { children: React.ReactElement}) => (
     <div>
-        <navBar/>
+        <NavBar/>
         {children}
         {/* Footer */}
     </div>
