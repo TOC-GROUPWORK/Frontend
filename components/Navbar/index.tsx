@@ -20,7 +20,7 @@ const NavBar = () => {
     <AppBar position="static" style={{background: "#6469E6", height: 80}}>
       <CssBaseline />
       <Toolbar>
-        <Typography style={{flexGrow: "1",cursor: "pointer",fontSize: "31px",marginTop: "15px",paddingLeft: "20px"}}>
+        <Typography onClick={clickHandler} style={{flexGrow: "1",cursor: "pointer",fontSize: "31px",marginTop: "15px",paddingLeft: "20px"}}>
           WongNok
         </Typography>
           <div style={{marginLeft: "80px",display: "flex",paddingRight: "20px",marginTop: "15px"}}>
