@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const FakeHome = () => {
   const router = useRouter();
 
-  useEffect(()=> {router.push('/home')});
-  
+  useEffect(() => {
+    router.push("/brands");
+  });
+
   return null;
 };
 
