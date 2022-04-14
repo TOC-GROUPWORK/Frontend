@@ -6,9 +6,6 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import SlideBanner from "../../components/SlideBanner";
 import SearchBar from "../../components/Searchbar";
 
-const SLIDE_COUNT = 5; // fix 5 pictures -> can change later or get form api
-const slides = Array.from(Array(SLIDE_COUNT).keys());
-
 const Home: React.FC<BrandProps> = ({ brands }) => {
   // const { data } = brands;
   // console.log(brands);
@@ -35,19 +32,35 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
   // useEffect(()=>{
   //     console.log(filter);
   // },[filter])
-
+  //rgba(236,72,153,1)
   return (
-    <Box bgcolor="#9c9edd" sx={{ minHeight: "100vh" }}>
+    <Box
+      sx={{
+        background:
+          "linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(190,72,183,1) 100%)",
+        minHeight: "100vh",
+      }}
+    >
       {/* TODO: Slide Banner */}
+
+      <Box width={"100%"} alignItems={"center"} marginX={"auto"}>
+        <SlideBanner />
+      </Box>
+
       <Box
         alignItems={"center"}
         justifyContent={"center"}
         marginX={"auto"}
         paddingY={"2em"}
         width={"60%"}
+        minHeight={"100vh"}
       >
-        <SlideBanner slides={slides} />
-        <Typography variant={"h6"} textAlign={"center"}>
+        <Typography
+          variant={"h4"}
+          textAlign={"center"}
+          color="white"
+          sx={{ my: 4 }}
+        >
           เลือกแบรนด์
         </Typography>
 

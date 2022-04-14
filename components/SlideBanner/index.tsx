@@ -1,70 +1,56 @@
-// Main file
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { PrevButton, NextButton } from "./emblaCarouselButtons";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import { mediaByIndex } from "../../mocks/slideBanner";
-import styles from "./embla.module.css";
-import Image from 'next/image';
+/* eslint-disable @next/next/no-img-element */
+import { Typography, Button } from "@mui/material/";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-function EmblaCarousel({ slides, options = { loop: false } }: any) {
-  const autoplay = useRef(
-    Autoplay(
-      { delay: 3000, stopOnInteraction: false },
-      (emblaRoot) => emblaRoot.parentElement
-    )
-  );
+import mockData from "../../mocks/sildeBanner/sildeBanner.json";
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [autoplay.current]);
-  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
-  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+type Props = {};
 
-  const scrollNext = useCallback(() => {
-    if (!emblaApi) return;
-    emblaApi.scrollNext();
-    autoplay.current.reset();
-  }, [emblaApi]);
+const MOCKDATA = mockData;
 
-  const scrollPrev = useCallback(() => {
-    if (!emblaApi) return;
-    emblaApi.scrollPrev();
-    autoplay.current.reset();
-  }, [emblaApi]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setPrevBtnEnabled(emblaApi.canScrollPrev());
-    setNextBtnEnabled(emblaApi.canScrollNext());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-  }, [emblaApi, onSelect]);
-
+const SlideBanner = (props: Props) => {
   return (
-    <div className={styles.embla}>
-      <div className={styles.embla__viewport} ref={emblaRef}>
-        <div className={styles.embla__container}>
-          {slides.map((index: any) => (
-            <div className={styles.embla__slide} key={index}>
-              <div className={styles.embla__slide__inner}>
-                <Image
-                  className={styles.embla__slide__img}
-                  src={mediaByIndex(index)}
-                  alt="mock cat"
-                  layout="fill" // if want ratio, you can set width and height ex: 16:9
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
-      <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
-    </div>
+    <Carousel autoPlay infiniteLoop swipeable emulateTouch showThumbs={false}>
+      {MOCKDATA.map((phone, index) => {
+        return (
+          <div key={index} style={{ width: "100vw", height: "calc(50vh)" }}>
+            <Typography
+              variant={"h2"}
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                textShadow: "1px 1px 50px #0004",
+              }}
+            >
+              {phone.model}
+            </Typography>
+            <Button
+              style={{
+                position: "absolute",
+                top: "80%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                textShadow: "1px 1px 50px #0004",
+                backgroundColor: "#9559F4",
+                padding: "7px 32px"
+              }}
+              variant="contained"
+              size="large"
+              color="inherit"
+            >
+              <Typography variant={"h6"}>เทียบเลย</Typography>
+            </Button>
+            <img src={phone.pictures} alt={phone.pictures} />
+          </div>
+        );
+      })}
+    </Carousel>
   );
-}
+};
 
-export default EmblaCarousel;
+export default SlideBanner;
