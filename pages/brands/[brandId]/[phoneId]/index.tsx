@@ -1,8 +1,21 @@
+import PackageList from "../../../../components/Cards/Package/PackageList";
+const DUMMY_PACKAGE = [
+  {
+    id: "p1",
+    PackageName: "ลูกค้าเก่ารายเดือน",
+    PackageDetail: "อัพเกรดแพ็กเกจใหม่ จ่ายเท่าเดิม 1099.-",
+  },
+  {
+    id: "p2",
+    PackageName: "ลูกค้าใหม่",
+    PackageDetail: "ย้ายค่ายเบอร์เดิมพร้อมสมัครแพ็คเกจ 1399.- ขึ้นไป",
+  },
+];
 const PhoneDetail = () => {
   return (
-    <>
-      <h1>Phone Detail Page</h1>
-    </>
+    <div>
+      <PackageList packages={DUMMY_PACKAGE} />
+    </div>
   );
 };
 
