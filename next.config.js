@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['scontent.fbkk17-1.fna.fbcdn.net'],
+    domains: ['scontent.fbkk17-1.fna.fbcdn.net', 'cdn-img.wemall.com'],
   },
 }
 
