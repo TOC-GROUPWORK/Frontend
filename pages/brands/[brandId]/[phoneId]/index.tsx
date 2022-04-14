@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Box, Typography, Grid } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import ToggleButton from "@mui/material/ToggleButton";
@@ -8,6 +9,9 @@ import PackageList from "../../../../components/Cards/Package/PackageList";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
+
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 import mockData from "../../../../mocks/phone/phone_iphone_13_max.json";
 
@@ -50,7 +54,7 @@ const PhoneDetail = () => {
         paddingY={"2em"}
         width={"60%"}
       >
-        <Box sx={{ my: 4 }}>
+        <Box sx={{ my: 1 }}>
           <Typography variant={"h4"} textAlign={"center"}>
             Promotion ทุกเครือข่าย
           </Typography>
@@ -60,16 +64,20 @@ const PhoneDetail = () => {
         </Box>
 
         {/* Grid 2 columns */}
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{mt:2}}>
           {/* left column */}
           <Grid item xs={6}>
-            <Image
-              src={MOCK_PHONE_DATA.pictures[0]}
-              layout="responsive"
-              width={1}
-              height={1}
-              alt=""
-            />
+            <Box sx={{px:10}}>
+              <Carousel autoPlay infiniteLoop swipeable emulateTouch>
+                {MOCK_PHONE_DATA.pictures.map((src, index) => {
+                  return (
+                    <div key={index}>
+                      <img src={src} alt={src} />
+                    </div>
+                  );
+                })}
+              </Carousel>
+            </Box>
           </Grid>
           {/* right column */}
           <Grid item xs={6}>
@@ -77,7 +85,7 @@ const PhoneDetail = () => {
               sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 4 }}
             >
               <Typography variant={"h5"} textAlign={"start"}>
-                iPhone 13 Pro MAX
+                {MOCK_PHONE_DATA.model}
               </Typography>
               <div>เลือกสี</div>
               <Box
@@ -101,7 +109,7 @@ const PhoneDetail = () => {
                   );
                 })}
               </Box>
-              <div>ความจุด</div>
+              <div>ความจุ</div>
               <Box sx={{ display: "flex", flexDirection: "row", columnGap: 2 }}>
                 <ToggleButtonGroup
                   exclusive
@@ -109,18 +117,17 @@ const PhoneDetail = () => {
                   aria-label="text alignment"
                   onChange={handleCapacity}
                 >
-                  <ToggleButton value="128 GB" sx={{ width: 96 }}>
-                    128 GB
-                  </ToggleButton>
-                  <ToggleButton value="256 GB" sx={{ width: 96 }}>
-                    256 GB
-                  </ToggleButton>
-                  <ToggleButton value="512 GB" sx={{ width: 96 }}>
-                    512 GB
-                  </ToggleButton>
-                  <ToggleButton value="1 TB" sx={{ width: 96 }}>
-                    1 TB
-                  </ToggleButton>
+                  {MOCK_PHONE_DATA.rams.map((capacity, index) => {
+                    return (
+                      <ToggleButton
+                        key={index}
+                        value={capacity}
+                        sx={{ width: 96 }}
+                      >
+                        {capacity}
+                      </ToggleButton>
+                    );
+                  })}
                 </ToggleButtonGroup>
               </Box>
             </Box>

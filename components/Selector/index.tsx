@@ -9,12 +9,12 @@ type Props = {
 const index = (props: Props) => {
   return (
     <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">
+      <InputLabel id="selectService">
         เลือกค่ายบริการมือถือ
       </InputLabel>
       <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
+        labelId="selectService"
+        id="selectServiceId"
         value={props.value}
         label="เลือกค่ายบริการมือถือ"
         onChange={props.onChange}
