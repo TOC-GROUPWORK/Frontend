@@ -5,7 +5,8 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 import Selector from "../../../../components/Selector";
-import PackageList from "../../../../components/Cards/Package/PackageList";
+import PackageShow from "../../../../components/Cards/PackageDetail/PackageShow";
+
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
@@ -35,7 +36,7 @@ const MOCK_PHONE_DATA = mockData;
 // </div>
 const PhoneDetail = () => {
   const router = useRouter();
-  const [capacity, setCapacity] = useState("1");
+  const [capacity, setCapacity] = useState(MOCK_PHONE_DATA.rams[0]);
   const handleCapacity = (event: any, newCapacity: any) => {
     setCapacity(newCapacity);
   };
@@ -50,7 +51,8 @@ const PhoneDetail = () => {
       sx={{
         background:
           "linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(190,72,183,1) 100%)",
-        minHeight: "100vh", py:3
+        minHeight: "100vh",
+        py: 3,
       }}
     >
       <Box
@@ -62,9 +64,8 @@ const PhoneDetail = () => {
         width={"60%"}
         bgcolor="#FFFFFF"
         sx={{
-          borderRadius: '4px'
+          borderRadius: "4px",
         }}
-
       >
         <Box sx={{ my: 1 }}>
           <Typography variant={"h4"} textAlign={"center"}>
@@ -80,7 +81,14 @@ const PhoneDetail = () => {
           {/* left column */}
           <Grid item xs={6}>
             <Box sx={{ px: 10 }}>
-              <Carousel autoPlay infiniteLoop swipeable emulateTouch>
+              <Carousel
+                autoPlay
+                infiniteLoop
+                swipeable
+                emulateTouch
+                showStatus={false}
+                showIndicators={false}
+              >
                 {MOCK_PHONE_DATA.pictures.map((src, index) => {
                   return (
                     <div key={index}>
@@ -99,7 +107,7 @@ const PhoneDetail = () => {
               <Typography variant={"h5"} textAlign={"start"}>
                 {MOCK_PHONE_DATA.model}
               </Typography>
-              <div>เลือกสี</div>
+              <div>สี</div>
               <Box
                 sx={{
                   display: "flex",
@@ -150,12 +158,15 @@ const PhoneDetail = () => {
           <Grid item xs={4}>
             {/* Still bug */}
             <Selector value={service} onChange={handleService} />
+            <PackageShow packages={MOCK_PHONE_DATA.promotions[capacity]} />
           </Grid>
           <Grid item xs={4}>
             <Selector value={service} onChange={handleService} />
+            <PackageShow packages={MOCK_PHONE_DATA.promotions[capacity]} />
           </Grid>
           <Grid item xs={4}>
             <Selector value={service} onChange={handleService} />
+            <PackageShow packages={MOCK_PHONE_DATA.promotions[capacity]} />
           </Grid>
         </Grid>
       </Box>

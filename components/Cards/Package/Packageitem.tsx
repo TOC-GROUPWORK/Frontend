@@ -6,6 +6,8 @@ import { CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 function Packageitem(props: any) {
+  const { index, PackageName, PackageDetail } = props;
+
   return (
     <Card
       variant="outlined"
@@ -17,6 +19,7 @@ function Packageitem(props: any) {
         borderColor: "grey.500",
         borderRadius: 3,
       }}
+      onClick={() => props.handleClick(index)}
     >
       <CardActionArea>
         <Box
@@ -31,7 +34,7 @@ function Packageitem(props: any) {
             color="common.white"
             textAlign="center"
           >
-            {props.PackageName}
+            {PackageName}
           </Typography>
         </Box>
         <Box
@@ -40,7 +43,7 @@ function Packageitem(props: any) {
           }}
         >
           <Typography sx={{ fontSize: 18, p: 4 }} color="black">
-            {props.PackageDetail}
+            {PackageDetail}
           </Typography>
         </Box>
       </CardActionArea>

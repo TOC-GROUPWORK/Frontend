@@ -1,7 +1,9 @@
 import PackageDetailitem from "./PackageDetailitem";
 import Box from "@mui/material/Box";
 
-function PackageList(props: { packagesdetail: any[] }) {
+function PackageList(props: { packages: any[]; packageNumber: any }) {
+  const { packages, packageNumber } = props;
+
   return (
     <Box
       sx={{
@@ -10,15 +12,21 @@ function PackageList(props: { packagesdetail: any[] }) {
         justifyContent: "flex-start",
       }}
     >
-      {props.packagesdetail.map((packagesdetail) => (
-        <PackageDetailitem
-          key={packagesdetail.id}
-          id={packagesdetail.id}
-          PackagePrice={packagesdetail.PackagePrice}
-          PackageDetail={packagesdetail.PackageDetail}
-          PackageContract={packagesdetail.PackageContract}
-        />
-      ))}
+      {packages[packageNumber].package.map(
+        (packagesdetail: any, index: number) => {
+          const details = packagesdetail;
+
+          return (
+            <PackageDetailitem
+              key={index}
+              id={index}
+              PackagePrice={details !== undefined ? details.specialprice : ""}
+              PackageDetail={details !== undefined ? details.prepaid : ""}
+              PackageContract={details !== undefined ? details.type : ""}
+            />
+          );
+        }
+      )}
     </Box>
   );
 }

@@ -11,7 +11,14 @@ const MOCKDATA = mockData;
 
 const SlideBanner = (props: Props) => {
   return (
-    <Carousel autoPlay infiniteLoop swipeable emulateTouch showThumbs={false}>
+    <Carousel
+      autoPlay
+      infiniteLoop
+      swipeable
+      emulateTouch
+      showThumbs={false}
+      showStatus={false}
+    >
       {MOCKDATA.map((phone, index) => {
         return (
           <div key={index} style={{ width: "100vw", height: "calc(50vh)" }}>
@@ -37,7 +44,7 @@ const SlideBanner = (props: Props) => {
                 color: "white",
                 textShadow: "1px 1px 50px #0004",
                 backgroundColor: "#9559F4",
-                padding: "7px 32px"
+                padding: "7px 32px",
               }}
               variant="contained"
               size="large"
