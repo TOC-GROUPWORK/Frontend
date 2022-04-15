@@ -9,7 +9,7 @@ import PackageDetailList from "./PackageDetailList";
 const PackageShow = ({ packages }: any) => {
   const PackageModal = styled(Modal)`
     position: fixed;
-    width: 1000px;
+    width: 1500px;
     z-index: 1040;
     border: 1px solid #e5e5e5;
     background-color: white;
