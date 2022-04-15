@@ -19,7 +19,10 @@ function Packageitem(props: any) {
         borderColor: "grey.500",
         borderRadius: 3,
       }}
-      onClick={() => props.handleClick(index)}
+      onClick={() => {
+        props.handleClick(index);
+        props.handlePackageDetailSelect(0);
+      }}
     >
       <CardActionArea>
         <Box

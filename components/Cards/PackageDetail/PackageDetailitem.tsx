@@ -17,6 +17,7 @@ function PackageDetailitem(props: any) {
         borderColor: "grey.500",
         borderRadius: 3,
       }}
+      onClick={() => props.handlePackageDetailSelect(props.index)}
     >
       <CardActionArea>
         <Box
@@ -31,12 +32,12 @@ function PackageDetailitem(props: any) {
             color="common.white"
             textAlign="center"
           >
-            {props.PackagePrice}
+            {props.PackagePrice} ฿
           </Typography>
         </Box>
         <Box sx={{ minHeight: 54, maxWidth: 456, pt: 1 }}>
           <Typography sx={{ fontSize: 20 }} color="black" textAlign="center">
-            {props.PackageDetail}
+            ค่าบริการล่วงหน้า {props.PackageDetail} ฿
           </Typography>
         </Box>
         <Box sx={{ minHeight: 60 }}>
@@ -45,7 +46,16 @@ function PackageDetailitem(props: any) {
             color="black"
             textAlign="center"
           >
-            {props.PackageContract}
+            ระยะเวลาสัญญา {props.PackageContract} เดือน
+          </Typography>
+        </Box>
+        <Box sx={{ minHeight: 60 }}>
+          <Typography
+            sx={{ fontSize: 20, pt: 1 }}
+            color="black"
+            textAlign="center"
+          >
+            ค่าบริการ {props.Package} ฿ / เดือน
           </Typography>
         </Box>
         <Box sx={{ minHeight: 40 }}>
