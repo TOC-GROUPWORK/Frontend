@@ -30,7 +30,7 @@ const NavBar = () => {
         <Typography variant={"h5"} onClick={clickHandler} style={{flexGrow: "1",cursor: "pointer",marginTop: "10px",paddingLeft: "16px"}}>
         WongNok
         </Typography>
-          <div style={{marginLeft: "80px",display: "flex",paddingRight: "20px",marginTop: "10px"}}>
+          <div style={{marginLeft: "80px",display: "flex",paddingRight: "20px",marginTop: "10px", marginRight: "20px"}}>
               <Typography variant={"h5"} onClick={clickHandler} style={{textDecoration: "none", cursor: "pointer", color: "white",marginLeft: "80px", fontFamily: 'Roboto',}}>
                 หน้าหลัก
               </Typography>
