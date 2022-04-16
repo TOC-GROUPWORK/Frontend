@@ -38,8 +38,10 @@ const PhoneDetail = () => {
   const router = useRouter();
   const [capacity, setCapacity] = useState(MOCK_PHONE_DATA.rams[0]);
   const handleCapacity = (event: any, newCapacity: any) => {
-    setCapacity(newCapacity);
-    console.log(newCapacity);
+    if(newCapacity) {
+      setCapacity(newCapacity);
+      console.log(newCapacity);
+    }
   };
 
   const [service, setService] = useState("1");
