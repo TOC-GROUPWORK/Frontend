@@ -2,7 +2,11 @@ import Packageitem from "./Packageitem";
 import Box from "@mui/material/Box";
 import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
 
-function PackageList(props: { packages: any[]; handleClick: any }) {
+function PackageList(props: {
+  packages: any[];
+  handleClick: any;
+  handlePackageDetailSelect: any;
+}) {
   const { packages } = props;
 
   return (
@@ -13,15 +17,20 @@ function PackageList(props: { packages: any[]; handleClick: any }) {
         justifyContent: "flex-start",
       }}
     >
-      {packages.map((packages, index) => (
-        <Packageitem
-          key={index}
-          index={index}
-          PackageName={packages.name}
-          PackageDetail={packages.detail}
-          handleClick={props.handleClick}
-        />
-      ))}
+      {packages.map((packageDetail, index) => {
+        if (index < packages.length - 1) {
+          return (
+            <Packageitem
+              key={index}
+              index={index}
+              PackageName={packageDetail.name}
+              PackageDetail={packageDetail.detail}
+              handleClick={props.handleClick}
+              handlePackageDetailSelect={props.handlePackageDetailSelect}
+            />
+          );
+        }
+      })}
     </Box>
   );
 }

@@ -38,7 +38,10 @@ const PhoneDetail = () => {
   const router = useRouter();
   const [capacity, setCapacity] = useState(MOCK_PHONE_DATA.rams[0]);
   const handleCapacity = (event: any, newCapacity: any) => {
-    setCapacity(newCapacity);
+    if(newCapacity) {
+      setCapacity(newCapacity);
+      console.log(newCapacity);
+    }
   };
 
   const [service, setService] = useState("1");
@@ -135,7 +138,7 @@ const PhoneDetail = () => {
                   exclusive
                   value={capacity}
                   aria-label="text alignment"
-                  onChange={handleCapacity}
+                  onChange={(e, capacity) => handleCapacity(e, capacity)}
                 >
                   {MOCK_PHONE_DATA.rams.map((capacity, index) => {
                     return (
@@ -158,15 +161,24 @@ const PhoneDetail = () => {
           <Grid item xs={4}>
             {/* Still bug */}
             <Selector value={service} onChange={handleService} />
-            <PackageShow packages={MOCK_PHONE_DATA.promotions[capacity]} />
+            <PackageShow
+              packages={MOCK_PHONE_DATA.promotions[capacity]}
+              link={MOCK_PHONE_DATA.link}
+            />
           </Grid>
           <Grid item xs={4}>
             <Selector value={service} onChange={handleService} />
-            <PackageShow packages={MOCK_PHONE_DATA.promotions[capacity]} />
+            <PackageShow
+              packages={MOCK_PHONE_DATA.promotions[capacity]}
+              link={MOCK_PHONE_DATA.link}
+            />
           </Grid>
           <Grid item xs={4}>
             <Selector value={service} onChange={handleService} />
-            <PackageShow packages={MOCK_PHONE_DATA.promotions[capacity]} />
+            <PackageShow
+              packages={MOCK_PHONE_DATA.promotions[capacity]}
+              link={MOCK_PHONE_DATA.link}
+            />
           </Grid>
         </Grid>
       </Box>
