@@ -36,30 +36,24 @@ const PhoneDetail = ({ phone }: any) => {
   const [service2, setService2] = useState("TRUE");
   const [service3, setService3] = useState("TRUE");
   const handleService = async (e: any) => {
-    console.log(e.target.value);
-
     await setService(e.target.value);
     await setCapacity(Object.keys(phone.detail[service])[0]);
-    await console.log(Object.keys(phone.detail[service]));
-    await console.log(phone.detail[service]);
+    // await console.log(Object.keys(phone.detail[service]));
+    // await console.log(phone.detail[service]);
   };
 
   const handleService2 = async (e: any) => {
-    console.log(e.target.value);
-
     await setService2(e.target.value);
     await setCapacity(Object.keys(phone.detail[service])[0]);
-    await console.log(Object.keys(phone.detail[service]));
-    await console.log(phone.detail[service]);
+    // await console.log(Object.keys(phone.detail[service]));
+    // await console.log(phone.detail[service]);
   };
 
   const handleService3 = async (e: any) => {
-    console.log(e.target.value);
-
     await setService3(e.target.value);
     await setCapacity(Object.keys(phone.detail[service])[0]);
-    await console.log(Object.keys(phone.detail[service]));
-    await console.log(phone.detail[service]);
+    // await console.log(Object.keys(phone.detail[service]));
+    // await console.log(phone.detail[service]);
   };
 
   // if (phone !== undefined) {

@@ -34,8 +34,6 @@ const PackageShow = ({ packages, link }: any) => {
     setPackageDetailNumber(index);
   };
 
-  // console.log(packages);
-
   return (
     <div className="modal-example">
       <Card
@@ -156,10 +154,9 @@ const PackageShow = ({ packages, link }: any) => {
           color="common.black"
           textAlign="center"
         >
-          {
-            packages.promotions[packageNumber].packages[packageDetailNumber]
-              .type
-          }{" "}
+          {packages.promotions[packageNumber].packages[
+            packageDetailNumber
+          ].package_type.replace(/\D/g, "")}{" "}
           เดือน
         </Typography>
         <Typography
@@ -194,7 +191,9 @@ const PackageShow = ({ packages, link }: any) => {
             parseFloat(
               packages.promotions[packageNumber].packages[
                 packageDetailNumber
-              ].package_type.replace(/,/g, "")
+              ].package_type
+                .replace(/\D/g, "")
+                .replace(/,/g, "")
             ) *
               parseFloat(
                 packages.promotions[packageNumber].packages[

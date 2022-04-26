@@ -10,8 +10,6 @@ type Props = {
 };
 
 const index = (props: Props) => {
-  console.log(props.service);
-
   return (
     <FormControl fullWidth>
       <InputLabel id="selectService">เลือกค่ายบริการมือถือ</InputLabel>
