@@ -16,6 +16,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 
 import mockData from "../../../../mocks/phone/phone_iphone_13_max.json";
 
+import DataService from "../../../../services/data.services";
+
 const DUMMY_PACKAGE = [
   {
     id: "p1",
@@ -34,13 +36,12 @@ const MOCK_PHONE_DATA = mockData;
 // <div>
 // <PackageList packages={DUMMY_PACKAGE} />
 // </div>
-const PhoneDetail = () => {
+const PhoneDetail = ({ phone }: any) => {
   const router = useRouter();
   const [capacity, setCapacity] = useState(MOCK_PHONE_DATA.rams[0]);
   const handleCapacity = (event: any, newCapacity: any) => {
-    if(newCapacity) {
+    if (newCapacity) {
       setCapacity(newCapacity);
-      console.log(newCapacity);
     }
   };
 
@@ -49,140 +50,160 @@ const PhoneDetail = () => {
     setService(newService);
   };
 
+  if (phone !== undefined) {
+  }
+
   return (
-    <Box
-      sx={{
-        background:
-          "linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(190,72,183,1) 100%)",
-        minHeight: "100vh",
-        py: 3,
-      }}
-    >
+    phone !== undefined && (
       <Box
-        alignItems={"center"}
-        justifyContent={"center"}
-        marginX={"auto"}
-        paddingY={"2em"}
-        paddingX={"2em"}
-        width={"60%"}
-        bgcolor="#FFFFFF"
         sx={{
-          borderRadius: "4px",
+          background:
+            "linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(190,72,183,1) 100%)",
+          minHeight: "100vh",
+          py: 3,
         }}
       >
-        <Box sx={{ my: 1 }}>
-          <Typography variant={"h4"} textAlign={"center"}>
-            Promotion ทุกเครือข่าย
-          </Typography>
-          <Typography variant={"h5"} textAlign={"center"}>
-            เปรียบเทียบราคาโปรโมชันในค่ายเดียวกันหรือค่ายอื่น
-          </Typography>
-        </Box>
+        <Box
+          alignItems={"center"}
+          justifyContent={"center"}
+          marginX={"auto"}
+          paddingY={"2em"}
+          paddingX={"2em"}
+          width={"60%"}
+          bgcolor="#FFFFFF"
+          sx={{
+            borderRadius: "4px",
+          }}
+        >
+          <Box sx={{ my: 1 }}>
+            <Typography variant={"h4"} textAlign={"center"}>
+              Promotion ทุกเครือข่าย
+            </Typography>
+            <Typography variant={"h5"} textAlign={"center"}>
+              เปรียบเทียบราคาโปรโมชันในค่ายเดียวกันหรือค่ายอื่น
+            </Typography>
+          </Box>
 
-        {/* Grid 2 columns */}
-        <Grid container spacing={2} sx={{ mt: 2 }}>
-          {/* left column */}
-          <Grid item xs={6}>
-            <Box sx={{ px: 10 }}>
-              <Carousel
-                autoPlay
-                infiniteLoop
-                swipeable
-                emulateTouch
-                showStatus={false}
-                showIndicators={false}
-              >
-                {MOCK_PHONE_DATA.pictures.map((src, index) => {
-                  return (
-                    <div key={index}>
-                      <img src={src} alt={src} />
-                    </div>
-                  );
-                })}
-              </Carousel>
-            </Box>
-          </Grid>
-          {/* right column */}
-          <Grid item xs={6}>
-            <Box
-              sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 4 }}
-            >
-              <Typography variant={"h5"} textAlign={"start"}>
-                {MOCK_PHONE_DATA.model}
-              </Typography>
-              <div>สี</div>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  columnGap: 2,
-                  height: 50,
-                }}
-              >
-                {MOCK_PHONE_DATA.color_style.map((color_code, index) => {
-                  return (
-                    <CircleIcon
-                      key={index}
-                      sx={{
-                        color: `rgb(${color_code[0]}, ${color_code[1]}, ${color_code[2]})`,
-                        width: 48,
-                        height: 48,
-                      }}
-                    />
-                  );
-                })}
-              </Box>
-              <div>ความจุ</div>
-              <Box sx={{ display: "flex", flexDirection: "row", columnGap: 2 }}>
-                <ToggleButtonGroup
-                  exclusive
-                  value={capacity}
-                  aria-label="text alignment"
-                  onChange={(e, capacity) => handleCapacity(e, capacity)}
+          {/* Grid 2 columns */}
+          <Grid container spacing={2} sx={{ mt: 2 }}>
+            {/* left column */}
+            <Grid item xs={6}>
+              <Box sx={{ px: 10 }}>
+                <Carousel
+                  autoPlay
+                  infiniteLoop
+                  swipeable
+                  emulateTouch
+                  showStatus={false}
+                  showIndicators={false}
                 >
-                  {MOCK_PHONE_DATA.rams.map((capacity, index) => {
+                  {phone.img.map((src: string, index: number) => {
                     return (
-                      <ToggleButton
-                        key={index}
-                        value={capacity}
-                        sx={{ width: 96 }}
-                      >
-                        {capacity}
-                      </ToggleButton>
+                      <div key={index}>
+                        <img src={src} alt={src} />
+                      </div>
                     );
                   })}
-                </ToggleButtonGroup>
+                </Carousel>
               </Box>
-            </Box>
+            </Grid>
+            {/* right column */}
+            <Grid item xs={6}>
+              <Box
+                sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 4 }}
+              >
+                <Typography variant={"h5"} textAlign={"start"}>
+                  {phone.name}
+                </Typography>
+                <div>สี</div>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    columnGap: 2,
+                    height: 50,
+                  }}
+                >
+                  {phone.color_style.map(
+                    (color_code: string, index: number) => {
+                      return (
+                        <CircleIcon
+                          key={index}
+                          sx={{
+                            color: `rgb(${color_code[0]}, ${color_code[1]}, ${color_code[2]})`,
+                            width: 48,
+                            height: 48,
+                          }}
+                        />
+                      );
+                    }
+                  )}
+                </Box>
+                <div>ความจุ</div>
+                <Box
+                  sx={{ display: "flex", flexDirection: "row", columnGap: 2 }}
+                >
+                  <ToggleButtonGroup
+                    exclusive
+                    value={capacity}
+                    aria-label="text alignment"
+                    onChange={(e, capacity) => handleCapacity(e, capacity)}
+                  >
+                    {Object.keys(phone.detail.TRUE).map((key, index) => {
+                      return (
+                        <ToggleButton
+                          key={index}
+                          value={key}
+                          sx={{ width: 96 }}
+                        >
+                          {key}
+                        </ToggleButton>
+                      );
+                    })}
+                    {/* {phone.detail.TRUE.map((ram: any, index: number) => {
+                      return (
+                        <ToggleButton
+                          key={index}
+                          value={ram.ram}
+                          sx={{ width: 96 }}
+                        >
+                          {ram.ram}
+                        </ToggleButton>
+                      );
+                    })} */}
+                  </ToggleButtonGroup>
+                </Box>
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
-        {/* Dropdown 3 Columns Grid */}
-        <Grid container spacing={3}>
-          <Grid item xs={4}>
-            {/* Still bug */}
-            <Selector value={service} onChange={handleService} />
-            <PackageShow
-              packages={MOCK_PHONE_DATA.promotions[capacity]}
-              link={MOCK_PHONE_DATA.link}
-            />
+          {/* Dropdown 3 Columns Grid */}
+          <Grid container spacing={3}>
+            <Grid item xs={4}>
+              {/* Still bug */}
+              <Selector value={service} onChange={handleService} />
+              <PackageShow
+                packages={MOCK_PHONE_DATA.promotions[capacity]}
+                link={MOCK_PHONE_DATA.link}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <Selector value={service} onChange={handleService} />
+              <PackageShow
+                packages={MOCK_PHONE_DATA.promotions[capacity]}
+                link={MOCK_PHONE_DATA.link}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <Selector value={service} onChange={handleService} />
+              <PackageShow
+                packages={MOCK_PHONE_DATA.promotions[capacity]}
+                link={MOCK_PHONE_DATA.link}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={4}>
-            <Selector value={service} onChange={handleService} />
-            <PackageShow
-              packages={MOCK_PHONE_DATA.promotions[capacity]}
-              link={MOCK_PHONE_DATA.link}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <Selector value={service} onChange={handleService} />
-            <PackageShow
-              packages={MOCK_PHONE_DATA.promotions[capacity]}
-              link={MOCK_PHONE_DATA.link}
-            />
-          </Grid>
-        </Grid>
+        </Box>
       </Box>
-    </Box>
+    )
   );
 };
 
@@ -205,13 +226,16 @@ export const getStaticProps = async (context: any) => {
   const phoneId = context.params.phoneId;
 
   //Fetch Data HERE
+  const data = DataService.getPhoneById(phoneId).then((res) => {
+    return res.data;
+  });
 
   //Mockup
-  const { data } = require("../../../../mocks/brand/brand_by_id.json");
+  // const { data } = require("../../../../mocks/brand/brand_by_id.json");
 
   return {
     props: {
-      phone: data,
+      phone: await data,
     },
   };
 };

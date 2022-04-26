@@ -3,12 +3,12 @@ import { CardProps } from "../../../interfaces";
 import React from "react";
 import { useRouter } from "next/router";
 
-const Phone: React.FC<CardProps> = ({ id, img, name }) => {
+const Phone: React.FC<CardProps> = ({ _id, img, name }) => {
   const router = useRouter();
 
   //Handle Click events
   const clickHandler = () => {
-    router.push("/brands/" + router.query.brandId + "/" + id);
+    router.push("/brands/" + router.query.brandId + "/" + _id);
   };
 
   return (

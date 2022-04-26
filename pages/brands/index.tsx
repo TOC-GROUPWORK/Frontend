@@ -5,11 +5,11 @@ import { BrandProps, CardProps } from "../../interfaces";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import SlideBanner from "../../components/SlideBanner";
 import SearchBar from "../../components/Searchbar";
+import DataService from "../../services/data.services";
 
 const Home: React.FC<BrandProps> = ({ brands }) => {
-  // const { data } = brands;
-  // console.log(brands);
   const [filter, setFilter] = useState<string>("");
+  const [brandsData, setBrandsData] = useState<[]>([]);
 
   const filterBrand = (brands: CardProps[], filter: string) => {
     if (!filter) {
@@ -33,6 +33,9 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
   //     console.log(filter);
   // },[filter])
   //rgba(236,72,153,1)
+
+  // console.log(brands);
+
   return (
     <Box
       sx={{
@@ -81,12 +84,12 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
                 <Grid
                   item
                   xs={4}
-                  key={brand.id}
+                  key={brand._id}
                   justifyContent="center"
                   alignItems="center"
                 >
                   <Brand
-                    id={brand.id}
+                    _id={brand._id}
                     name={brand.name}
                     img={brand.img}
                     // key={brand.id}
@@ -105,10 +108,15 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
 
 //Fetching Data on Server side
 export const getStaticProps = async () => {
-  const { data } = await require("../../mocks/brand/brand_all.json");
+  // const { data } = await require("../../mocks/brand/brand_all.json");
+
+  const data = DataService.getBrands().then((res) => {
+    return res.data;
+  });
+
   return {
     props: {
-      brands: data,
+      brands: await data,
     },
   };
 };

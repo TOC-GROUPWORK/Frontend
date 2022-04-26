@@ -1,7 +1,14 @@
 export interface CardProps {
-    id: string;
+    _id: string;
     img: string;
     name: string;
+}
+
+export interface PhoneProp {
+    _id:string;
+    name:string;
+    img:string[];
+
 }
 
 export interface BrandProps {
@@ -9,7 +16,14 @@ export interface BrandProps {
 }
 
 export interface PhoneProps {
-    phones : CardProps[];
+    _id:string;
+    name:string;
+    img:string;
+    models_list:PhoneProp[];
+}
+
+export interface PhonesProps {
+    phones : PhoneProps;
 }
 
 export interface PhoneDetailProps {
