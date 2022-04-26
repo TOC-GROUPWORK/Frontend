@@ -34,6 +34,8 @@ const PackageShow = ({ packages, link }: any) => {
     setPackageDetailNumber(index);
   };
 
+  // console.log(packages);
+
   return (
     <div className="modal-example">
       <Card
@@ -61,7 +63,7 @@ const PackageShow = ({ packages, link }: any) => {
               color="common.white"
               textAlign="center"
             >
-              {packages[packageNumber].name}
+              {packages.promotions[packageNumber].name}
             </Typography>
           </Box>
           <Box
@@ -74,12 +76,8 @@ const PackageShow = ({ packages, link }: any) => {
               color="common.black"
               textAlign="center"
             >
-              ราคาเริ่มต้น <br></br>
-              {
-                packages[packageNumber].package[packageDetailNumber]
-                  .specialprice
-              }{" "}
-              ฿
+              <br></br>
+              {packages.promotions[packageNumber].detail} ฿
             </Typography>
             <Typography
               sx={{ fontSize: 16 }}
@@ -87,7 +85,11 @@ const PackageShow = ({ packages, link }: any) => {
               textAlign="center"
             >
               ค่าบริการล่วงหน้า <br></br>
-              {packages[packageNumber].package[packageDetailNumber].prepaid} ฿
+              {
+                packages.promotions[packageNumber].packages[packageDetailNumber]
+                  .prepaid
+              }{" "}
+              ฿
             </Typography>
           </Box>
         </CardActionArea>
@@ -100,12 +102,12 @@ const PackageShow = ({ packages, link }: any) => {
       >
         <div>
           <PackageList
-            packages={packages}
+            promotions={packages.promotions}
             handleClick={handlePackageSelect}
             handlePackageDetailSelect={handlePackageDetailSelect}
           />
           <PackageDetailList
-            packages={packages}
+            packages={packages.promotions[packageNumber].packages}
             packageNumber={packageNumber}
             handlePackageDetailSelect={handlePackageDetailSelect}
           />
@@ -132,36 +134,51 @@ const PackageShow = ({ packages, link }: any) => {
           color="common.black"
           textAlign="center"
         >
-          {packages[packageNumber].package[packageDetailNumber].specialprice} ฿
+          {
+            packages.promotions[packageNumber].packages[packageDetailNumber]
+              .specialprice
+          }{" "}
+          ฿
         </Typography>
         <Typography
           sx={{ fontSize: 16 }}
           color="common.black"
           textAlign="center"
         >
-          {packages[packageNumber].package[packageDetailNumber].prepaid} ฿
+          {
+            packages.promotions[packageNumber].packages[packageDetailNumber]
+              .prepaid
+          }{" "}
+          ฿
         </Typography>
         <Typography
           sx={{ fontSize: 16 }}
           color="common.black"
           textAlign="center"
         >
-          {packages[packageNumber].package[packageDetailNumber].type} เดือน
-        </Typography>
-        <Typography
-          sx={{ fontSize: 16 }}
-          color="common.black"
-          textAlign="center"
-        >
-          {packages[packageNumber].package[packageDetailNumber].package} ฿ /
+          {
+            packages.promotions[packageNumber].packages[packageDetailNumber]
+              .type
+          }{" "}
           เดือน
+        </Typography>
+        <Typography
+          sx={{ fontSize: 16 }}
+          color="common.black"
+          textAlign="center"
+        >
+          {
+            packages.promotions[packageNumber].packages[packageDetailNumber]
+              .package
+          }{" "}
+          ฿ / เดือน
         </Typography>
         <Typography
           sx={{ fontSize: 20 }}
           color="common.black"
           textAlign="center"
         >
-          {(
+          {/* {(
             parseFloat(
               packages[packageNumber].package[
                 packageDetailNumber
@@ -184,13 +201,13 @@ const PackageShow = ({ packages, link }: any) => {
                 ].package.replace(/,/g, "")
               )
           ).toLocaleString()}{" "}
-          ฿
+          ฿ */}
         </Typography>
-        <a href={link}>
+        {/* <a href={link}>
           <Button variant="contained" sx={{ width: "100%" }}>
             ซื้อเลย
           </Button>
-        </a>
+        </a> */}
       </Box>
     </div>
   );

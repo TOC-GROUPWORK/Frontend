@@ -3,11 +3,11 @@ import Box from "@mui/material/Box";
 import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
 
 function PackageList(props: {
-  packages: any[];
+  promotions: any[];
   handleClick: any;
   handlePackageDetailSelect: any;
 }) {
-  const { packages } = props;
+  const { promotions } = props;
 
   return (
     <Box
@@ -17,8 +17,8 @@ function PackageList(props: {
         justifyContent: "flex-start",
       }}
     >
-      {packages.map((packageDetail, index) => {
-        if (index < packages.length - 1) {
+      {promotions.map((packageDetail, index) => {
+        if (index < promotions.length - 1) {
           return (
             <Packageitem
               key={index}

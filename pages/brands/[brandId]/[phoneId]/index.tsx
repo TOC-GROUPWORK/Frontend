@@ -8,7 +8,7 @@ import Selector from "../../../../components/Selector";
 import PackageShow from "../../../../components/Cards/PackageDetail/PackageShow";
 
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { Carousel } from "react-responsive-carousel";
@@ -18,19 +18,6 @@ import mockData from "../../../../mocks/phone/phone_iphone_13_max.json";
 
 import DataService from "../../../../services/data.services";
 
-const DUMMY_PACKAGE = [
-  {
-    id: "p1",
-    PackageName: "ลูกค้าเก่ารายเดือน",
-    PackageDetail: "อัพเกรดแพ็กเกจใหม่ จ่ายเท่าเดิม 1099.-",
-  },
-  {
-    id: "p2",
-    PackageName: "ลูกค้าใหม่",
-    PackageDetail: "ย้ายค่ายเบอร์เดิมพร้อมสมัครแพ็คเกจ 1399.- ขึ้นไป",
-  },
-];
-
 const MOCK_PHONE_DATA = mockData;
 
 // <div>
@@ -38,19 +25,23 @@ const MOCK_PHONE_DATA = mockData;
 // </div>
 const PhoneDetail = ({ phone }: any) => {
   const router = useRouter();
-  const [capacity, setCapacity] = useState(MOCK_PHONE_DATA.rams[0]);
+  const [capacity, setCapacity] = useState("page");
   const handleCapacity = (event: any, newCapacity: any) => {
     if (newCapacity) {
       setCapacity(newCapacity);
     }
   };
 
-  const [service, setService] = useState("1");
-  const handleService = (event: any, newService: any) => {
-    setService(newService);
+  const [service, setService] = useState("TRUE");
+  const handleService = async (event: any, newService: any) => {
+    console.log(event.value);
+
+    await setService(newService);
+    await setCapacity(Object.keys(phone.detail[service])[0]);
   };
 
   if (phone !== undefined) {
+    console.log(phone.detail[service]["256GB"]);
   }
 
   return (
@@ -139,64 +130,80 @@ const PhoneDetail = ({ phone }: any) => {
                     }
                   )}
                 </Box>
-                <div>ความจุ</div>
-                <Box
-                  sx={{ display: "flex", flexDirection: "row", columnGap: 2 }}
-                >
-                  <ToggleButtonGroup
-                    exclusive
-                    value={capacity}
-                    aria-label="text alignment"
-                    onChange={(e, capacity) => handleCapacity(e, capacity)}
-                  >
-                    {Object.keys(phone.detail.TRUE).map((key, index) => {
-                      return (
-                        <ToggleButton
-                          key={index}
-                          value={key}
-                          sx={{ width: 96 }}
-                        >
-                          {key}
-                        </ToggleButton>
-                      );
-                    })}
-                    {/* {phone.detail.TRUE.map((ram: any, index: number) => {
-                      return (
-                        <ToggleButton
-                          key={index}
-                          value={ram.ram}
-                          sx={{ width: 96 }}
-                        >
-                          {ram.ram}
-                        </ToggleButton>
-                      );
-                    })} */}
-                  </ToggleButtonGroup>
-                </Box>
+                {Object.keys(phone.detail[service])[0] !== "page" && (
+                  <div>
+                    <div>ความจุ</div>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        columnGap: 2,
+                      }}
+                    >
+                      <ToggleButtonGroup
+                        exclusive
+                        value={capacity}
+                        aria-label="text alignment"
+                        onChange={(e, capacity) => handleCapacity(e, capacity)}
+                      >
+                        {Object.keys(phone.detail[service]).map(
+                          (key, index) => {
+                            return (
+                              <ToggleButton
+                                key={index}
+                                value={key}
+                                sx={{ width: 96 }}
+                              >
+                                {key}
+                              </ToggleButton>
+                            );
+                          }
+                        )}
+                      </ToggleButtonGroup>
+                    </Box>
+                  </div>
+                )}
               </Box>
             </Grid>
           </Grid>
           {/* Dropdown 3 Columns Grid */}
           <Grid container spacing={3}>
             <Grid item xs={4}>
-              {/* Still bug */}
               <Selector value={service} onChange={handleService} />
               <PackageShow
-                packages={MOCK_PHONE_DATA.promotions[capacity]}
+                packages={
+                  phone.detail[service][capacity] !== undefined
+                    ? phone.detail[service][capacity]
+                    : phone.detail[service][
+                        Object.keys(phone.detail[service])[0]
+                      ]
+                }
                 link={MOCK_PHONE_DATA.link}
               />
             </Grid>
             <Grid item xs={4}>
               <Selector value={service} onChange={handleService} />
               <PackageShow
-                packages={MOCK_PHONE_DATA.promotions[capacity]}
+                packages={
+                  phone.detail[service][capacity] !== undefined
+                    ? phone.detail[service][capacity]
+                    : phone.detail[service][
+                        Object.keys(phone.detail[service])[0]
+                      ]
+                }
                 link={MOCK_PHONE_DATA.link}
               />
             </Grid>
             <Grid item xs={4}>
               <Selector value={service} onChange={handleService} />
               <PackageShow
-                packages={MOCK_PHONE_DATA.promotions[capacity]}
+                packages={
+                  phone.detail[service][capacity] !== undefined
+                    ? phone.detail[service][capacity]
+                    : phone.detail[service][
+                        Object.keys(phone.detail[service])[0]
+                      ]
+                }
                 link={MOCK_PHONE_DATA.link}
               />
             </Grid>

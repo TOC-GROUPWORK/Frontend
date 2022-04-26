@@ -8,6 +8,8 @@ function PackageList(props: {
 }) {
   const { packages, packageNumber } = props;
 
+  console.log(packages);
+
   return (
     <Box
       sx={{
@@ -16,23 +18,21 @@ function PackageList(props: {
         justifyContent: "flex-start",
       }}
     >
-      {packages[packageNumber].package.map(
-        (packagesdetail: any, index: number) => {
-          const details = packagesdetail;
+      {packages.map((packagesdetail: any, index: number) => {
+        const details = packagesdetail;
 
-          return (
-            <PackageDetailitem
-              key={index}
-              index={index}
-              PackagePrice={details !== undefined ? details.specialprice : ""}
-              PackageDetail={details !== undefined ? details.prepaid : ""}
-              PackageContract={details !== undefined ? details.type : ""}
-              Package={details !== undefined ? details.package : ""}
-              handlePackageDetailSelect={props.handlePackageDetailSelect}
-            />
-          );
-        }
-      )}
+        return (
+          <PackageDetailitem
+            key={index}
+            index={index}
+            PackagePrice={details !== undefined ? details.specialprice : ""}
+            PackageDetail={details !== undefined ? details.prepaid : ""}
+            PackageContract={details !== undefined ? details.package_type : ""}
+            Package={details !== undefined ? details.package : ""}
+            handlePackageDetailSelect={props.handlePackageDetailSelect}
+          />
+        );
+      })}
     </Box>
   );
 }

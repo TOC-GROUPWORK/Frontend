@@ -20,9 +20,9 @@ const index = (props: Props) => {
         onChange={props.onChange}
       >
         {/* Still bug */}
-        <MenuItem value={1}>TRUE</MenuItem>
-        <MenuItem value={2}>AIS</MenuItem>
-        <MenuItem value={3}>DTAC</MenuItem>
+        <MenuItem value={"TRUE"}>TRUE</MenuItem>
+        <MenuItem value={"AIS"}>AIS</MenuItem>
+        <MenuItem value={"DTAC"}>DTAC</MenuItem>
       </Select>
     </FormControl>
   );
