@@ -178,30 +178,31 @@ const PackageShow = ({ packages, link }: any) => {
           color="common.black"
           textAlign="center"
         >
-          {/* {(
+          {(
             parseFloat(
-              packages[packageNumber].package[
+              packages.promotions[packageNumber].packages[
                 packageDetailNumber
               ].specialprice.replace(/,/g, "")
             ) +
             parseFloat(
-              packages[packageNumber].package[packageDetailNumber].prepaid
+              packages.promotions[packageNumber].packages[
+                packageDetailNumber
+              ].prepaid
                 .replace(/,/g, "")
                 .replace(/-/g, "0")
             ) +
             parseFloat(
-              packages[packageNumber].package[packageDetailNumber].type.replace(
-                /,/g,
-                ""
-              )
+              packages.promotions[packageNumber].packages[
+                packageDetailNumber
+              ].package_type.replace(/,/g, "")
             ) *
               parseFloat(
-                packages[packageNumber].package[
+                packages.promotions[packageNumber].packages[
                   packageDetailNumber
                 ].package.replace(/,/g, "")
               )
           ).toLocaleString()}{" "}
-          ฿ */}
+          ฿
         </Typography>
         {/* <a href={link}>
           <Button variant="contained" sx={{ width: "100%" }}>

@@ -33,16 +33,38 @@ const PhoneDetail = ({ phone }: any) => {
   };
 
   const [service, setService] = useState("TRUE");
-  const handleService = async (event: any, newService: any) => {
-    console.log(event.value);
+  const [service2, setService2] = useState("TRUE");
+  const [service3, setService3] = useState("TRUE");
+  const handleService = async (e: any) => {
+    console.log(e.target.value);
 
-    await setService(newService);
+    await setService(e.target.value);
     await setCapacity(Object.keys(phone.detail[service])[0]);
+    await console.log(Object.keys(phone.detail[service]));
+    await console.log(phone.detail[service]);
   };
 
-  if (phone !== undefined) {
-    console.log(phone.detail[service]["256GB"]);
-  }
+  const handleService2 = async (e: any) => {
+    console.log(e.target.value);
+
+    await setService2(e.target.value);
+    await setCapacity(Object.keys(phone.detail[service])[0]);
+    await console.log(Object.keys(phone.detail[service]));
+    await console.log(phone.detail[service]);
+  };
+
+  const handleService3 = async (e: any) => {
+    console.log(e.target.value);
+
+    await setService3(e.target.value);
+    await setCapacity(Object.keys(phone.detail[service])[0]);
+    await console.log(Object.keys(phone.detail[service]));
+    await console.log(phone.detail[service]);
+  };
+
+  // if (phone !== undefined) {
+  //   console.log(phone.detail[service][Object.keys(phone.detail[service])[0]]);
+  // }
 
   return (
     phone !== undefined && (
@@ -154,7 +176,7 @@ const PhoneDetail = ({ phone }: any) => {
                                 value={key}
                                 sx={{ width: 96 }}
                               >
-                                {key}
+                                {capacity}
                               </ToggleButton>
                             );
                           }
@@ -169,7 +191,11 @@ const PhoneDetail = ({ phone }: any) => {
           {/* Dropdown 3 Columns Grid */}
           <Grid container spacing={3}>
             <Grid item xs={4}>
-              <Selector value={service} onChange={handleService} />
+              <Selector
+                value={service}
+                onChange={handleService}
+                service={Object.keys(phone.detail)}
+              />
               <PackageShow
                 packages={
                   phone.detail[service][capacity] !== undefined
@@ -182,26 +208,34 @@ const PhoneDetail = ({ phone }: any) => {
               />
             </Grid>
             <Grid item xs={4}>
-              <Selector value={service} onChange={handleService} />
+              <Selector
+                value={service2}
+                onChange={handleService2}
+                service={Object.keys(phone.detail)}
+              />
               <PackageShow
                 packages={
-                  phone.detail[service][capacity] !== undefined
-                    ? phone.detail[service][capacity]
-                    : phone.detail[service][
-                        Object.keys(phone.detail[service])[0]
+                  phone.detail[service2][capacity] !== undefined
+                    ? phone.detail[service2][capacity]
+                    : phone.detail[service2][
+                        Object.keys(phone.detail[service2])[0]
                       ]
                 }
                 link={MOCK_PHONE_DATA.link}
               />
             </Grid>
             <Grid item xs={4}>
-              <Selector value={service} onChange={handleService} />
+              <Selector
+                value={service3}
+                onChange={handleService3}
+                service={Object.keys(phone.detail)}
+              />
               <PackageShow
                 packages={
-                  phone.detail[service][capacity] !== undefined
-                    ? phone.detail[service][capacity]
-                    : phone.detail[service][
-                        Object.keys(phone.detail[service])[0]
+                  phone.detail[service3][capacity] !== undefined
+                    ? phone.detail[service3][capacity]
+                    : phone.detail[service3][
+                        Object.keys(phone.detail[service3])[0]
                       ]
                 }
                 link={MOCK_PHONE_DATA.link}
