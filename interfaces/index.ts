@@ -1,3 +1,5 @@
+import { ObjectEncodingOptions } from "fs";
+
 export interface CardProps {
     _id: string;
     img: string;
@@ -26,6 +28,18 @@ export interface PhonesProps {
     phones : PhoneProps;
 }
 
+export interface ServiceProps {
+    AIS: Object;
+    DTAC: Object;
+    TRUE: Object;
+}
+
 export interface PhoneDetailProps {
-    
+    _id:string;
+    name: string;
+    img: string[];
+    color_name: string[];
+    color_style: string[];
+    detail: ServiceProps;
+    links?: any;
 }

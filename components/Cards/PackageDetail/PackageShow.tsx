@@ -1,5 +1,14 @@
 import styled from "@emotion/styled";
-import { Card, CardActionArea, Box, Typography, Button } from "@mui/material";
+import {
+  Card,
+  CardActionArea,
+  Box,
+  Typography,
+  Button,
+  Divider,
+  Chip,
+  Stack,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Modal from "react-overlays/Modal";
@@ -40,9 +49,8 @@ const PackageShow = ({ packages, link }: any) => {
         variant="outlined"
         sx={{
           maxHeight: 272,
-          maxWidth: 237,
           backgroundColor: "common.white",
-          margin: 5,
+          marginTop: 3,
           borderColor: "grey.500",
           borderRadius: 3,
         }}
@@ -52,15 +60,15 @@ const PackageShow = ({ packages, link }: any) => {
           <Box
             sx={{
               minHeight: 55,
-              backgroundColor: "rgb(130, 133, 224)",
+              // backgroundColor: "secondary.dark",
+              // backgroundColor: "#A853F4",
+              background:
+                "linear-gradient(90deg, rgba(140,102,241,1) 0%, rgba(168,84,246,1) 60%, rgba(190,72,183,1) 100%)",
+              // backgroundColor: "rgb(130, 133, 224)",
               pt: 1.5,
             }}
           >
-            <Typography
-              sx={{ fontSize: 20 }}
-              color="common.white"
-              textAlign="center"
-            >
+            <Typography variant="h6" color="common.white" textAlign="center">
               {packages.promotions[packageNumber].name}
             </Typography>
           </Box>
@@ -69,19 +77,11 @@ const PackageShow = ({ packages, link }: any) => {
               minHeight: 217,
             }}
           >
-            <Typography
-              sx={{ fontSize: 16 }}
-              color="common.black"
-              textAlign="center"
-            >
+            <Typography variant="h5" color="common.black" textAlign="center">
               <br></br>
               {packages.promotions[packageNumber].detail} ฿
             </Typography>
-            <Typography
-              sx={{ fontSize: 16 }}
-              color="common.black"
-              textAlign="center"
-            >
+            <Typography variant="h6" color="common.black" textAlign="center">
               ค่าบริการล่วงหน้า <br></br>
               {
                 packages.promotions[packageNumber].packages[packageDetailNumber]
@@ -119,62 +119,60 @@ const PackageShow = ({ packages, link }: any) => {
         </div>
       </PackageModal>
 
-      <Box
+      {/* summery result */}
+      <Stack spacing={2}
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
+          mt: 2,
         }}
       >
-        <Typography
-          sx={{ fontSize: 16 }}
-          color="common.black"
-          textAlign="center"
-        >
+        <Divider>ราคาเริ่มต้น</Divider>
+        <Typography variant="h6" color="common.black" textAlign="center">
           {
             packages.promotions[packageNumber].packages[packageDetailNumber]
               .specialprice
           }{" "}
           ฿
         </Typography>
-        <Typography
-          sx={{ fontSize: 16 }}
-          color="common.black"
-          textAlign="center"
-        >
+
+        <Divider>ค่าบริการล่วงหน้า</Divider>
+        <Typography variant="h6" color="common.black" textAlign="center">
           {
             packages.promotions[packageNumber].packages[packageDetailNumber]
               .prepaid
           }{" "}
           ฿
         </Typography>
-        <Typography
-          sx={{ fontSize: 16 }}
-          color="common.black"
-          textAlign="center"
-        >
+
+        <Divider>จำนวนเดือน</Divider>
+        <Typography variant="h6" color="common.black" textAlign="center">
           {packages.promotions[packageNumber].packages[
             packageDetailNumber
           ].package_type.replace(/\D/g, "")}{" "}
           เดือน
         </Typography>
-        <Typography
-          sx={{ fontSize: 16 }}
-          color="common.black"
-          textAlign="center"
-        >
+
+        <Divider>ราคา/เดือน</Divider>
+        <Typography variant="h6" color="common.black" textAlign="center">
           {
             packages.promotions[packageNumber].packages[packageDetailNumber]
               .package
           }{" "}
           ฿ / เดือน
         </Typography>
-        <Typography
-          sx={{ fontSize: 20 }}
-          color="common.black"
-          textAlign="center"
-        >
+
+        <Divider>
+          <Chip
+            sx={{
+              color: "white",
+              fontSize: 16,
+              width: 100,
+              background:
+                "linear-gradient(90deg, rgba(140,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(170,72,200,1) 100%)",
+            }}
+            label="ราคาสุทธิ"
+          />
+        </Divider>
+        <Typography variant="h4" color="common.black" textAlign="center">
           {(
             parseFloat(
               packages.promotions[packageNumber].packages[
@@ -203,12 +201,14 @@ const PackageShow = ({ packages, link }: any) => {
           ).toLocaleString()}{" "}
           ฿
         </Typography>
+        <hr />
+        <hr />
         {/* <a href={link}>
           <Button variant="contained" sx={{ width: "100%" }}>
             ซื้อเลย
           </Button>
         </a> */}
-      </Box>
+      </Stack>
     </div>
   );
 };

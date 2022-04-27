@@ -8,7 +8,7 @@ import SlideBanner from "../../../components/SlideBanner";
 import { useRouter } from "next/router";
 import DataService from "../../../services/data.services";
 
-const PhonePage: React.FC<PhonesProps> = ({ phones }) => {
+const PhonePage = ({ phones }:PhonesProps) => {
   useEffect(() => {
     window.scrollTo(0, 450);
   });

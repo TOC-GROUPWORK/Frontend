@@ -17,6 +17,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import mockData from "../../../../mocks/phone/phone_iphone_13_max.json";
 
 import DataService from "../../../../services/data.services";
+import { PhoneDetailProps } from "../../../../interfaces";
 
 const MOCK_PHONE_DATA = mockData;
 
@@ -24,37 +25,49 @@ const MOCK_PHONE_DATA = mockData;
 // <PackageList packages={DUMMY_PACKAGE} />
 // </div>
 const PhoneDetail = ({ phone }: any) => {
+  console.log(phone);
   const router = useRouter();
-  const [capacity, setCapacity] = useState("page");
-  const handleCapacity = (event: any, newCapacity: any) => {
-    if (newCapacity) {
-      setCapacity(newCapacity);
-    }
+  const [capacity1, setCapacity1] = useState("page");
+  const [capacity2, setCapacity2] = useState("page");
+  const [capacity3, setCapacity3] = useState("page");
+  const handleCapacity1 = (e: any) => {
+    setCapacity1(e.target.value);
+  };
+  const handleCapacity2 = (e: any) => {
+    setCapacity2(e.target.value);
+  };
+  const handleCapacity3 = (e: any) => {
+    setCapacity3(e.target.value);
   };
 
-  const [service, setService] = useState("TRUE");
+  const [service1, setService1] = useState("TRUE");
   const [service2, setService2] = useState("TRUE");
   const [service3, setService3] = useState("TRUE");
-  const handleService = async (e: any) => {
-    await setService(e.target.value);
-    await setCapacity(Object.keys(phone.detail[service])[0]);
+  const handleService1 = async (e: any) => {
+    setService1(e.target.value);
+    setCapacity1(Object.keys(phone.detail[service1])[0]);
     // await console.log(Object.keys(phone.detail[service]));
     // await console.log(phone.detail[service]);
   };
 
   const handleService2 = async (e: any) => {
-    await setService2(e.target.value);
-    await setCapacity(Object.keys(phone.detail[service])[0]);
-    // await console.log(Object.keys(phone.detail[service]));
-    // await console.log(phone.detail[service]);
+    setService2(e.target.value);
+    setCapacity2(Object.keys(phone.detail[service2])[0]);
   };
 
   const handleService3 = async (e: any) => {
-    await setService3(e.target.value);
-    await setCapacity(Object.keys(phone.detail[service])[0]);
-    // await console.log(Object.keys(phone.detail[service]));
-    // await console.log(phone.detail[service]);
+    setService3(e.target.value);
+    setCapacity3(Object.keys(phone.detail[service3])[0]);
   };
+
+  useEffect(() => {
+    if (phone !== undefined && phone !== null) {
+      setCapacity1(Object.keys(phone.detail[service1])[0]);
+      setCapacity2(Object.keys(phone.detail[service2])[0]);
+      setCapacity3(Object.keys(phone.detail[service3])[0]);
+    }
+    console.log("test")
+  }, [phone, service1, service2, service3]);
 
   // if (phone !== undefined) {
   //   console.log(phone.detail[service][Object.keys(phone.detail[service])[0]]);
@@ -146,9 +159,9 @@ const PhoneDetail = ({ phone }: any) => {
                     }
                   )}
                 </Box>
-                {Object.keys(phone.detail[service])[0] !== "page" && (
+                {Object.keys(phone.detail[service1])[0] !== "page" && (
                   <div>
-                    <div>ความจุ</div>
+                    {/* <div>ความจุ</div> */}
                     <Box
                       sx={{
                         display: "flex",
@@ -156,13 +169,13 @@ const PhoneDetail = ({ phone }: any) => {
                         columnGap: 2,
                       }}
                     >
-                      <ToggleButtonGroup
+                      {/* <ToggleButtonGroup
                         exclusive
                         value={capacity}
                         aria-label="text alignment"
                         onChange={(e, capacity) => handleCapacity(e, capacity)}
                       >
-                        {Object.keys(phone.detail[service]).map(
+                        {Object.keys(phone.detail[service1]).map(
                           (key, index) => {
                             return (
                               <ToggleButton
@@ -175,7 +188,7 @@ const PhoneDetail = ({ phone }: any) => {
                             );
                           }
                         )}
-                      </ToggleButtonGroup>
+                      </ToggleButtonGroup> */}
                     </Box>
                   </div>
                 )}
@@ -186,16 +199,25 @@ const PhoneDetail = ({ phone }: any) => {
           <Grid container spacing={3}>
             <Grid item xs={4}>
               <Selector
-                value={service}
-                onChange={handleService}
-                service={Object.keys(phone.detail)}
+                value={service1}
+                onChange={handleService1}
+                options={Object.keys(phone.detail)}
+                label="เลือกค่ายบริการมือถือ"
               />
+              <Box sx={{ mt: 3 }} />
+              <Selector
+                value={capacity1}
+                onChange={handleCapacity1}
+                options={Object.keys(phone.detail[service1])}
+                label="เลือกความจุ"
+              />
+
               <PackageShow
                 packages={
-                  phone.detail[service][capacity] !== undefined
-                    ? phone.detail[service][capacity]
-                    : phone.detail[service][
-                        Object.keys(phone.detail[service])[0]
+                  phone.detail[service1][capacity1] !== undefined
+                    ? phone.detail[service1][capacity1]
+                    : phone.detail[service1][
+                        Object.keys(phone.detail[service1])[0]
                       ]
                 }
                 link={MOCK_PHONE_DATA.link}
@@ -205,12 +227,21 @@ const PhoneDetail = ({ phone }: any) => {
               <Selector
                 value={service2}
                 onChange={handleService2}
-                service={Object.keys(phone.detail)}
+                options={Object.keys(phone.detail)}
+                label="เลือกค่ายบริการมือถือ"
               />
+              <Box sx={{ mt: 3 }} />
+              <Selector
+                value={capacity2}
+                onChange={handleCapacity2}
+                options={Object.keys(phone.detail[service2])}
+                label="เลือกความจุ"
+              />
+
               <PackageShow
                 packages={
-                  phone.detail[service2][capacity] !== undefined
-                    ? phone.detail[service2][capacity]
+                  phone.detail[service2][capacity2] !== undefined
+                    ? phone.detail[service2][capacity2]
                     : phone.detail[service2][
                         Object.keys(phone.detail[service2])[0]
                       ]
@@ -222,12 +253,21 @@ const PhoneDetail = ({ phone }: any) => {
               <Selector
                 value={service3}
                 onChange={handleService3}
-                service={Object.keys(phone.detail)}
+                options={Object.keys(phone.detail)}
+                label="เลือกค่ายบริการมือถือ"
               />
+              <Box sx={{ mt: 3 }} />
+              <Selector
+                value={capacity3}
+                onChange={handleCapacity3}
+                options={Object.keys(phone.detail[service3])}
+                label="เลือกความจุ"
+              />
+
               <PackageShow
                 packages={
-                  phone.detail[service3][capacity] !== undefined
-                    ? phone.detail[service3][capacity]
+                  phone.detail[service3][capacity3] !== undefined
+                    ? phone.detail[service3][capacity3]
                     : phone.detail[service3][
                         Object.keys(phone.detail[service3])[0]
                       ]

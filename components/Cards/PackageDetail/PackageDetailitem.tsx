@@ -23,7 +23,9 @@ function PackageDetailitem(props: any) {
         <Box
           sx={{
             minHeight: 96,
-            backgroundColor: "rgb(130, 133, 224)",
+            // backgroundColor: "rgb(130, 133, 224)",
+            // backgroundColor: "secondary.dark",
+            background:  "linear-gradient(90deg, rgba(140,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(170,72,200,1) 100%)",
             pt: 1.5,
           }}
         >

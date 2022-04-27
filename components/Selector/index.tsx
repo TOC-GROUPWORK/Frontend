@@ -6,30 +6,42 @@ import React from "react";
 type Props = {
   value: any;
   onChange: any;
-  service: any;
+  options: string[];
+  label?: string;
 };
 
-const index = (props: Props) => {
+const index = ({ value, onChange, options, label }: Props) => {
   return (
     <FormControl fullWidth>
-      <InputLabel id="selectService">เลือกค่ายบริการมือถือ</InputLabel>
-      <Select
-        labelId="selectService"
-        id="selectServiceId"
-        value={props.value}
-        label="เลือกค่ายบริการมือถือ"
-        onChange={(e) => props.onChange(e)}
-      >
-        {props.service.includes("TRUE") && (
-          <MenuItem value={"TRUE"}>TRUE</MenuItem>
-        )}
-        {props.service.includes("AIS") && (
-          <MenuItem value={"AIS"}>AIS</MenuItem>
-        )}
-        {props.service.includes("DTAC") && (
-          <MenuItem value={"DTAC"}>DTAC</MenuItem>
-        )}
-      </Select>
+      <InputLabel id="selectService">{label}</InputLabel>
+
+      {value === "page" ? (
+        <Select
+          labelId="selectService"
+          id="selectServiceId"
+          value={value}
+          label={label}
+          onChange={(e) => onChange(e)}
+        >
+          <MenuItem value={"page"}>ไม่พบข้อมูล</MenuItem>
+        </Select>
+      ) : (
+        <Select
+          labelId="selectService"
+          id="selectServiceId"
+          value={value}
+          label={label}
+          onChange={(e) => onChange(e)}
+        >
+          {options.map((option: string, index: number) => {
+            return (
+              <MenuItem key={index} value={option}>
+                {option}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      )}
     </FormControl>
   );
 };
