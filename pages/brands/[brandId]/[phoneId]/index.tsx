@@ -19,6 +19,9 @@ import mockData from "../../../../mocks/phone/phone_iphone_13_max.json";
 import DataService from "../../../../services/data.services";
 import { PhoneDetailProps } from "../../../../interfaces";
 
+import React from "react";
+import ReactLoading from "react-loading";
+
 const MOCK_PHONE_DATA = mockData;
 
 // <div>
@@ -66,110 +69,126 @@ const PhoneDetail = ({ phone }: any) => {
       setCapacity2(Object.keys(phone.detail[service2])[0]);
       setCapacity3(Object.keys(phone.detail[service3])[0]);
     }
-    console.log("test")
+    console.log("test");
   }, [phone, service1, service2, service3]);
 
   // if (phone !== undefined) {
   //   console.log(phone.detail[service][Object.keys(phone.detail[service])[0]]);
   // }
 
-  return (
-    phone !== undefined && (
+  return phone === undefined ? (
+    <Box
+      sx={{
+        background:
+          "linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(190,72,183,1) 100%)",
+        minHeight: "calc(100vh - 74px)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <ReactLoading
+        type={"spinningBubbles"}
+        color={"#FFFFFF"}
+        height={"4%"}
+        width={"4%"}
+      />
+    </Box>
+  ) : (
+    <Box
+      sx={{
+        background:
+          "linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(190,72,183,1) 100%)",
+        minHeight: "100vh",
+        py: 3,
+      }}
+    >
       <Box
+        alignItems={"center"}
+        justifyContent={"center"}
+        marginX={"auto"}
+        paddingY={"2em"}
+        paddingX={"2em"}
+        width={"60%"}
+        bgcolor="#FFFFFF"
         sx={{
-          background:
-            "linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(190,72,183,1) 100%)",
-          minHeight: "100vh",
-          py: 3,
+          borderRadius: "4px",
         }}
       >
-        <Box
-          alignItems={"center"}
-          justifyContent={"center"}
-          marginX={"auto"}
-          paddingY={"2em"}
-          paddingX={"2em"}
-          width={"60%"}
-          bgcolor="#FFFFFF"
-          sx={{
-            borderRadius: "4px",
-          }}
-        >
-          <Box sx={{ my: 1 }}>
-            <Typography variant={"h4"} textAlign={"center"}>
-              Promotion ทุกเครือข่าย
-            </Typography>
-            <Typography variant={"h5"} textAlign={"center"}>
-              เปรียบเทียบราคาโปรโมชันในค่ายเดียวกันหรือค่ายอื่น
-            </Typography>
-          </Box>
+        <Box sx={{ my: 1 }}>
+          <Typography variant={"h4"} textAlign={"center"}>
+            Promotion ทุกเครือข่าย
+          </Typography>
+          <Typography variant={"h5"} textAlign={"center"}>
+            เปรียบเทียบราคาโปรโมชันในค่ายเดียวกันหรือค่ายอื่น
+          </Typography>
+        </Box>
 
-          {/* Grid 2 columns */}
-          <Grid container spacing={2} sx={{ mt: 2 }}>
-            {/* left column */}
-            <Grid item xs={6}>
-              <Box sx={{ px: 10 }}>
-                <Carousel
-                  autoPlay
-                  infiniteLoop
-                  swipeable
-                  emulateTouch
-                  showStatus={false}
-                  showIndicators={false}
-                >
-                  {phone.img.map((src: string, index: number) => {
-                    return (
-                      <div key={index}>
-                        <img src={src} alt={src} />
-                      </div>
-                    );
-                  })}
-                </Carousel>
-              </Box>
-            </Grid>
-            {/* right column */}
-            <Grid item xs={6}>
-              <Box
-                sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 4 }}
+        {/* Grid 2 columns */}
+        <Grid container spacing={2} sx={{ mt: 2 }}>
+          {/* left column */}
+          <Grid item xs={6}>
+            <Box sx={{ px: 10 }}>
+              <Carousel
+                autoPlay
+                infiniteLoop
+                swipeable
+                emulateTouch
+                showStatus={false}
+                showIndicators={false}
               >
-                <Typography variant={"h5"} textAlign={"start"}>
-                  {phone.name}
-                </Typography>
-                <div>สี</div>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    columnGap: 2,
-                    height: 50,
-                  }}
-                >
-                  {phone.color_style.map(
-                    (color_code: string, index: number) => {
-                      return (
-                        <CircleIcon
-                          key={index}
-                          sx={{
-                            color: `rgb(${color_code[0]}, ${color_code[1]}, ${color_code[2]})`,
-                            width: 48,
-                            height: 48,
-                          }}
-                        />
-                      );
-                    }
-                  )}
-                </Box>
-                {Object.keys(phone.detail[service1])[0] !== "page" && (
-                  <div>
-                    {/* <div>ความจุ</div> */}
-                    <Box
+                {phone.img.map((src: string, index: number) => {
+                  return (
+                    <div key={index}>
+                      <img src={src} alt={src} />
+                    </div>
+                  );
+                })}
+              </Carousel>
+            </Box>
+          </Grid>
+          {/* right column */}
+          <Grid item xs={6}>
+            <Box
+              sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 4 }}
+            >
+              <Typography variant={"h5"} textAlign={"start"}>
+                {phone.name}
+              </Typography>
+              <div>สี</div>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  columnGap: 2,
+                  height: 50,
+                }}
+              >
+                {phone.color_style.map((color_code: string, index: number) => {
+                  return (
+                    <CircleIcon
+                      key={index}
                       sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        columnGap: 2,
+                        color: `rgb(${color_code[0]}, ${color_code[1]}, ${color_code[2]})`,
+                        width: 48,
+                        height: 48,
                       }}
-                    >
-                      {/* <ToggleButtonGroup
+                    />
+                  );
+                })}
+              </Box>
+              {Object.keys(phone.detail[service1])[0] !== "page" && (
+                <div>
+                  {/* <div>ความจุ</div> */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      columnGap: 2,
+                    }}
+                  >
+                    {/* <ToggleButtonGroup
                         exclusive
                         value={capacity}
                         aria-label="text alignment"
@@ -189,96 +208,95 @@ const PhoneDetail = ({ phone }: any) => {
                           }
                         )}
                       </ToggleButtonGroup> */}
-                    </Box>
-                  </div>
-                )}
-              </Box>
-            </Grid>
+                  </Box>
+                </div>
+              )}
+            </Box>
           </Grid>
-          {/* Dropdown 3 Columns Grid */}
-          <Grid container spacing={3}>
-            <Grid item xs={4}>
-              <Selector
-                value={service1}
-                onChange={handleService1}
-                options={Object.keys(phone.detail)}
-                label="เลือกค่ายบริการมือถือ"
-              />
-              <Box sx={{ mt: 3 }} />
-              <Selector
-                value={capacity1}
-                onChange={handleCapacity1}
-                options={Object.keys(phone.detail[service1])}
-                label="เลือกความจุ"
-              />
+        </Grid>
+        {/* Dropdown 3 Columns Grid */}
+        <Grid container spacing={3}>
+          <Grid item xs={4}>
+            <Selector
+              value={service1}
+              onChange={handleService1}
+              options={Object.keys(phone.detail)}
+              label="เลือกค่ายบริการมือถือ"
+            />
+            <Box sx={{ mt: 3 }} />
+            <Selector
+              value={capacity1}
+              onChange={handleCapacity1}
+              options={Object.keys(phone.detail[service1])}
+              label="เลือกความจุ"
+            />
 
-              <PackageShow
-                packages={
-                  phone.detail[service1][capacity1] !== undefined
-                    ? phone.detail[service1][capacity1]
-                    : phone.detail[service1][
-                        Object.keys(phone.detail[service1])[0]
-                      ]
-                }
-                link={MOCK_PHONE_DATA.link}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <Selector
-                value={service2}
-                onChange={handleService2}
-                options={Object.keys(phone.detail)}
-                label="เลือกค่ายบริการมือถือ"
-              />
-              <Box sx={{ mt: 3 }} />
-              <Selector
-                value={capacity2}
-                onChange={handleCapacity2}
-                options={Object.keys(phone.detail[service2])}
-                label="เลือกความจุ"
-              />
-
-              <PackageShow
-                packages={
-                  phone.detail[service2][capacity2] !== undefined
-                    ? phone.detail[service2][capacity2]
-                    : phone.detail[service2][
-                        Object.keys(phone.detail[service2])[0]
-                      ]
-                }
-                link={MOCK_PHONE_DATA.link}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <Selector
-                value={service3}
-                onChange={handleService3}
-                options={Object.keys(phone.detail)}
-                label="เลือกค่ายบริการมือถือ"
-              />
-              <Box sx={{ mt: 3 }} />
-              <Selector
-                value={capacity3}
-                onChange={handleCapacity3}
-                options={Object.keys(phone.detail[service3])}
-                label="เลือกความจุ"
-              />
-
-              <PackageShow
-                packages={
-                  phone.detail[service3][capacity3] !== undefined
-                    ? phone.detail[service3][capacity3]
-                    : phone.detail[service3][
-                        Object.keys(phone.detail[service3])[0]
-                      ]
-                }
-                link={MOCK_PHONE_DATA.link}
-              />
-            </Grid>
+            <PackageShow
+              packages={
+                phone.detail[service1][capacity1] !== undefined
+                  ? phone.detail[service1][capacity1]
+                  : phone.detail[service1][
+                      Object.keys(phone.detail[service1])[0]
+                    ]
+              }
+              link={MOCK_PHONE_DATA.link}
+            />
           </Grid>
-        </Box>
+          <Grid item xs={4}>
+            <Selector
+              value={service2}
+              onChange={handleService2}
+              options={Object.keys(phone.detail)}
+              label="เลือกค่ายบริการมือถือ"
+            />
+            <Box sx={{ mt: 3 }} />
+            <Selector
+              value={capacity2}
+              onChange={handleCapacity2}
+              options={Object.keys(phone.detail[service2])}
+              label="เลือกความจุ"
+            />
+
+            <PackageShow
+              packages={
+                phone.detail[service2][capacity2] !== undefined
+                  ? phone.detail[service2][capacity2]
+                  : phone.detail[service2][
+                      Object.keys(phone.detail[service2])[0]
+                    ]
+              }
+              link={MOCK_PHONE_DATA.link}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <Selector
+              value={service3}
+              onChange={handleService3}
+              options={Object.keys(phone.detail)}
+              label="เลือกค่ายบริการมือถือ"
+            />
+            <Box sx={{ mt: 3 }} />
+            <Selector
+              value={capacity3}
+              onChange={handleCapacity3}
+              options={Object.keys(phone.detail[service3])}
+              label="เลือกความจุ"
+            />
+
+            <PackageShow
+              packages={
+                phone.detail[service3][capacity3] !== undefined
+                  ? phone.detail[service3][capacity3]
+                  : phone.detail[service3][
+                      Object.keys(phone.detail[service3])[0]
+                    ]
+              }
+              link={MOCK_PHONE_DATA.link}
+            />
+          </Grid>
+        </Grid>
       </Box>
-    )
+    </Box>
   );
 };
 
