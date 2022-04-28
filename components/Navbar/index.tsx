@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, CssBaseline, Typography, Box } from "@mui/material/";
-import Link from 'next/link';
+import Link from "next/link";
 import { useRouter } from "next/router";
 import logo from "../../assets/logo_wn.png";
 import Image from "next/image";

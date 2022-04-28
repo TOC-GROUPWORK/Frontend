@@ -19,6 +19,10 @@ class DataService {
       return axios_base.get<any>(`/model/${id}`);
   }
 
+  getPackageTrue(provider:string,id:string){
+      return axios_base.get<any>(`/provider/${provider}/${id}`)
+  }
+
 }
 
 export default new DataService();
