@@ -108,14 +108,10 @@ const PhonePage = ({ phones }: PhonesProps) => {
                   item
                   xs={4}
                   key={phone._id}
-                // justifyContent="center"
-                // alignItems="center"
+                  // justifyContent="center"
+                  // alignItems="center"
                 >
-                  <Phone
-                    _id={phone._id}
-                    name={phone.name}
-                    img={phone.img[0]}
-                  />
+                  <Phone _id={phone._id} name={phone.name} img={phone.img[0]} />
                 </Grid>
               );
             })
@@ -135,7 +131,7 @@ export const getStaticPaths = async () => {
     paths: [
       {
         params: {
-          brandId: "Apple",
+          brandId: "62585a9dd338a6435c9b5426",
         },
       },
     ],
