@@ -14,9 +14,6 @@ function PackageList(props: {
   return (
     <ImageList
       sx={{
-        // display: "flex",
-        // flexDirection: "row",
-        // justifyContent: "flex-start",
         gridAutoFlow: "column",
         gridTemplateColumns: "repeat(auto-fill,minmax(350px,1fr)) !important",
         gridAutoColumns: "minmax(350px, 1fr)",

@@ -11,15 +11,20 @@ import {
 } from "@mui/material";
 import { width } from "@mui/system";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-overlays/Modal";
 import index from "../../Selector";
 import PackageList from "../Package/PackageList";
 import PackageDetailList from "./PackageDetailList";
 
-const PackageShow = ({ packages, link }: any) => {
-  console.log(packages);
-
+const PackageShow = ({
+  packages,
+  link,
+  packageNumber,
+  setPackageNumber,
+  packageDetailNumber,
+  setPackageDetailNumber,
+}: any) => {
   const PackageModal = styled(Modal)`
     position: fixed;
     width: 80vw;
@@ -40,8 +45,8 @@ const PackageShow = ({ packages, link }: any) => {
   `;
 
   const [show, setShow] = useState(false);
-  const [packageNumber, setPackageNumber] = useState(0);
-  const [packageDetailNumber, setPackageDetailNumber] = useState(0);
+  // const [packageNumber, setPackageNumber] = useState(0);
+  // const [packageDetailNumber, setPackageDetailNumber] = useState(0);
 
   const handlePackageSelect = (index: any) => {
     setPackageNumber(index);
@@ -50,6 +55,11 @@ const PackageShow = ({ packages, link }: any) => {
   const handlePackageDetailSelect = (index: any) => {
     setPackageDetailNumber(index);
   };
+
+  useEffect(() => {
+    setPackageNumber(0);
+    setPackageDetailNumber(0);
+  }, [packages]);
 
   return (
     <div className="modal-example">
@@ -261,11 +271,6 @@ const PackageShow = ({ packages, link }: any) => {
         </Typography>
         <Divider color={"#CCC"} />
         <Divider color={"#CCC"} />
-        {/* <a href={link}>
-          <Button variant="contained" sx={{ width: "100%" }}>
-            ซื้อเลย
-          </Button>
-        </a> */}
       </Stack>
     </div>
   );

@@ -35,7 +35,7 @@ const SlideBanner = (props: Props) => {
             >
               {phone.model}
             </Typography>
-            <Button
+            {/* <Button
               style={{
                 position: "absolute",
                 top: "80%",
@@ -51,7 +51,7 @@ const SlideBanner = (props: Props) => {
               color="inherit"
             >
               <Typography variant={"h6"}>เทียบเลย</Typography>
-            </Button>
+            </Button> */}
             <img src={phone.pictures} alt={phone.pictures} />
           </div>
         );
