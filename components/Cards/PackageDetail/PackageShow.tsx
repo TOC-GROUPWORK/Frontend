@@ -23,14 +23,18 @@ const PackageShow = ({ packages, link }: any) => {
   const PackageModal = styled(Modal)`
     position: fixed;
     width: 80vw;
-    height: 950px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 95vh;
     z-index: 1040;
     border: 1px solid #e5e5e5;
     background-color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    top: 1%;
-    left: 10%;
+    padding: 30px 40px;
+    border-radius: 4px;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
     display: flex;
     flex-wrap: no-wrap;
   `;
@@ -69,10 +73,10 @@ const PackageShow = ({ packages, link }: any) => {
               background:
                 "linear-gradient(90deg, rgba(140,102,241,1) 0%, rgba(168,84,246,1) 60%, rgba(190,72,183,1) 100%)",
               // backgroundColor: "rgb(130, 133, 224)",
-              pt: 1.5,
-              // display: "flex",
-              // flexDirection: "column",
-              // justifyContent: "center",
+              // pt: 1.5,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
           >
             <Typography variant="h6" color="common.white" textAlign="center">
@@ -134,7 +138,7 @@ const PackageShow = ({ packages, link }: any) => {
               ? "STEP 2 : เลือกแพ็คเกจ"
               : "ไม่มีแพ็คเกจให้ท่านเลือก"}
           </Typography>
-          <div style={{ display: "flex", width: "75vw", height: "400px" }}>
+          <div style={{ display: "flex", width: "75vw", minHeight: "32vh" }}>
             <PackageDetailList
               packages={packages.promotions[packageNumber].packages}
               packageNumber={packageNumber}
@@ -143,14 +147,17 @@ const PackageShow = ({ packages, link }: any) => {
             />
           </div>
 
-          <Button
-            onClick={() => {
-              setShow(false);
-            }}
-            variant="contained"
-          >
-            Save
-          </Button>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Button
+              onClick={() => {
+                setShow(false);
+              }}
+              variant="contained"
+              sx={{ px: 4, fontSize: "18px" }}
+            >
+              บันทึก
+            </Button>
+          </Box>
         </div>
       </PackageModal>
 
@@ -252,8 +259,8 @@ const PackageShow = ({ packages, link }: any) => {
               ).toLocaleString()}{" "}
           ฿
         </Typography>
-        <hr />
-        <hr />
+        <Divider color={"#CCC"} />
+        <Divider color={"#CCC"} />
         {/* <a href={link}>
           <Button variant="contained" sx={{ width: "100%" }}>
             ซื้อเลย

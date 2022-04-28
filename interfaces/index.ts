@@ -43,3 +43,9 @@ export interface PhoneDetailProps {
     detail: ServiceProps;
     links?: any;
 }
+
+export interface IStudent{
+    path: string;
+    name: string;
+    code: string;
+}
