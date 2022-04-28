@@ -26,7 +26,7 @@ const PackageShow = ({ packages, link }: any) => {
     background-color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     padding: 20px;
-    top: 10%;
+    top: 5%;
     left: 10%;
     display: flex;
     flex-wrap: no-wrap;
@@ -101,28 +101,35 @@ const PackageShow = ({ packages, link }: any) => {
         show={show}
         onHide={() => setShow(false)}
         aria-labelledby="modal-label"
-        
       >
         <div>
-          <PackageList
-            promotions={packages.promotions}
-            handleClick={handlePackageSelect}
-            handlePackageDetailSelect={handlePackageDetailSelect}
-          />
-          <div style={{display: "flex", width: "1400px"}}>
-          <PackageDetailList
-            packages={packages.promotions[packageNumber].packages}
-            packageNumber={packageNumber}
-            handlePackageDetailSelect={handlePackageDetailSelect}
-          />
+          <Typography variant="h5" color="common.black" textAlign="center">
+            STEP 1 : เลือกโปรโมชั่น
+          </Typography>
+          <div style={{ display: "flex", width: "1450px" }}>
+            <PackageList
+              promotions={packages.promotions}
+              handleClick={handlePackageSelect}
+              handlePackageDetailSelect={handlePackageDetailSelect}
+            />
           </div>
-          <button
+          <Typography variant="h5" color="common.black" textAlign="center">
+            STEP 2 : เลือกแพ็คเกจ
+          </Typography>
+          <div style={{ display: "flex", width: "1450px" }}>
+            <PackageDetailList
+              packages={packages.promotions[packageNumber].packages}
+              packageNumber={packageNumber}
+              handlePackageDetailSelect={handlePackageDetailSelect}
+            />
+          </div>
+          <Button
             onClick={() => {
               setShow(false);
             }}
           >
             Save
-          </button>
+          </Button>
         </div>
       </PackageModal>
 

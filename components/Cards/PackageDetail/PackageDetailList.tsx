@@ -9,8 +9,6 @@ function PackageList(props: {
 }) {
   const { packages, packageNumber } = props;
 
-  console.log(packages);
-
   return (
     <ImageList
       sx={{
@@ -18,16 +16,16 @@ function PackageList(props: {
         // flexDirection: "row",
         // justifyContent: "flex-start",
         gridAutoFlow: "column",
-    gridTemplateColumns: "repeat(auto-fill,minmax(350px,1fr)) !important",
-    gridAutoColumns: "minmax(350px, 1fr)",
-    width: 2400,
+        gridTemplateColumns: "repeat(auto-fill,minmax(350px,1fr)) !important",
+        gridAutoColumns: "minmax(350px, 1fr)",
+        width: 2400,
       }}
     >
       {packages.map((packagesdetail: any, index: number) => {
         const details = packagesdetail;
 
         return (
-            <PackageDetailItem
+          <PackageDetailItem
             key={index}
             index={index}
             PackagePrice={details !== undefined ? details.specialprice : ""}
@@ -39,7 +37,6 @@ function PackageList(props: {
         );
       })}
     </ImageList>
-
   );
 }
 

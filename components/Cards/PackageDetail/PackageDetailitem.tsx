@@ -6,7 +6,7 @@ import { Button, CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 function PackageDetailItem(props: any) {
- const [select, setSelect] = React.useState(false);
+  const [select, setSelect] = React.useState(false);
   return (
     <Card
       variant="outlined"
@@ -18,8 +18,10 @@ function PackageDetailItem(props: any) {
         borderColor: "grey.500",
         borderRadius: 3,
       }}
-      onClick={() => {props.handlePackageDetailSelect(props.index)
-      setSelect(!select)}}
+      onClick={() => {
+        props.handlePackageDetailSelect(props.index);
+        setSelect(!select);
+      }}
     >
       <CardActionArea>
         <Box
@@ -63,24 +65,27 @@ function PackageDetailItem(props: any) {
             ค่าบริการ {props.Package} ฿ / เดือน
           </Typography>
         </Box>
-        {select ? (<Box sx={{ minHeight: 40 }}>
-          <Typography
-            sx={{ fontSize: 20, pt: 1 }}
-            color="black"
-            textAlign="right"
-          >
-            ติ๊กถูก
-          </Typography>
-        </Box>) : (<Box sx={{ minHeight: 40 }}>
-          <Typography
-            sx={{ fontSize: 20, pt: 1 }}
-            color="black"
-            textAlign="right"
-          >
-            ไม่ติ๊กถูก
-          </Typography>
-        </Box>)}
-        
+        {select ? (
+          <Box sx={{ minHeight: 40 }}>
+            <Typography
+              sx={{ fontSize: 20, pt: 1 }}
+              color="black"
+              textAlign="right"
+            >
+              ติ๊กถูก
+            </Typography>
+          </Box>
+        ) : (
+          <Box sx={{ minHeight: 40 }}>
+            <Typography
+              sx={{ fontSize: 20, pt: 1 }}
+              color="black"
+              textAlign="right"
+            >
+              ไม่ติ๊กถูก
+            </Typography>
+          </Box>
+        )}
       </CardActionArea>
     </Card>
   );

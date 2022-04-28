@@ -12,9 +12,9 @@ function Packageitem(props: any) {
     <Card
       variant="outlined"
       sx={{
-        maxHeight: 272,
-        maxWidth: 237,
-        backgroundColor: "common.white",
+        maxHeight: 200,
+        minWidth: 300,
+        backgroundColor: "rgba(197, 198, 228, 0.2)",
         margin: 5,
         borderColor: "grey.500",
         borderRadius: 3,
