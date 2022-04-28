@@ -6,6 +6,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import SlideBanner from "../../components/SlideBanner";
 import SearchBar from "../../components/Searchbar";
 import DataService from "../../services/data.services";
+import ReactLoading from "react-loading";
 
 const Home: React.FC<BrandProps> = ({ brands }) => {
   const [filter, setFilter] = useState<string>("");
@@ -36,7 +37,26 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
 
   // console.log(brands);
 
-  return (
+  return brands === undefined ? (
+    <Box
+      sx={{
+        background:
+          "linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(190,72,183,1) 100%)",
+        minHeight: "calc(100vh - 74px)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <ReactLoading
+        type={"spinningBubbles"}
+        color={"#FFFFFF"}
+        height={"4%"}
+        width={"4%"}
+      />
+    </Box>
+  ) : (
     <Box
       sx={{
         background:
@@ -72,8 +92,8 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
         <Grid
           container
           direction="row"
-          alignItems={"center"}
           justifyContent={"center"}
+          alignItems={"stretch"}
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
           paddingTop={"3em"}
@@ -85,14 +105,13 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
                   item
                   xs={4}
                   key={brand._id}
-                  justifyContent="center"
-                  alignItems="center"
+                // justifyContent="center"
+                // alignItems="center"
                 >
                   <Brand
                     _id={brand._id}
                     name={brand.name}
                     img={brand.img}
-                    // key={brand.id}
                   />
                 </Grid>
               );
