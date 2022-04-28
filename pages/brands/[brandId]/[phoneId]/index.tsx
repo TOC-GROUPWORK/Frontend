@@ -39,12 +39,18 @@ const PhoneDetail = ({ phone, TRUE, AIS, DTAC }: any) => {
 
   const handleCapacity1 = (e: any) => {
     setCapacity1(e.target.value);
+    setPackageNumber1(0);
+    setPackageDetailNumber1(0);
   };
   const handleCapacity2 = (e: any) => {
     setCapacity2(e.target.value);
+    setPackageNumber2(0);
+    setPackageDetailNumber2(0);
   };
   const handleCapacity3 = (e: any) => {
     setCapacity3(e.target.value);
+    setPackageNumber3(0);
+    setPackageDetailNumber3(0);
   };
 
   const [service1, setService1] = useState("TRUE");

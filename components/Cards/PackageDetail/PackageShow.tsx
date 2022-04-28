@@ -59,8 +59,6 @@ const PackageShow = ({
   useEffect(() => {
     setPackageNumber(0);
     setPackageDetailNumber(0);
-
-    console.log(packageNumber, packageDetailNumber);
   }, [packages]);
 
   return (
