@@ -25,7 +25,8 @@ function PackageDetailitem(props: any) {
             minHeight: 96,
             // backgroundColor: "rgb(130, 133, 224)",
             // backgroundColor: "secondary.dark",
-            background:  "linear-gradient(90deg, rgba(140,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(170,72,200,1) 100%)",
+            background:
+              "linear-gradient(90deg, rgba(140,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(170,72,200,1) 100%)",
             pt: 1.5,
           }}
         >
@@ -39,7 +40,7 @@ function PackageDetailitem(props: any) {
         </Box>
         <Box sx={{ minHeight: 54, maxWidth: 456, pt: 1 }}>
           <Typography sx={{ fontSize: 20 }} color="black" textAlign="center">
-            ค่าบริการล่วงหน้า {props.PackageDetail} ฿
+            ค่าบริการล่วงหน้า {props.PackageDetail.replace("None", "-")} ฿
           </Typography>
         </Box>
         <Box sx={{ minHeight: 60 }}>

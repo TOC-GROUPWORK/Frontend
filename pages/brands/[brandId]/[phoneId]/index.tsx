@@ -28,7 +28,6 @@ const MOCK_PHONE_DATA = mockData;
 // <PackageList packages={DUMMY_PACKAGE} />
 // </div>
 const PhoneDetail = ({ phone }: any) => {
-  console.log(phone);
   const router = useRouter();
   const [capacity1, setCapacity1] = useState("page");
   const [capacity2, setCapacity2] = useState("page");
@@ -69,7 +68,6 @@ const PhoneDetail = ({ phone }: any) => {
       setCapacity2(Object.keys(phone.detail[service2])[0]);
       setCapacity3(Object.keys(phone.detail[service3])[0]);
     }
-    console.log("test");
   }, [phone, service1, service2, service3]);
 
   // if (phone !== undefined) {
