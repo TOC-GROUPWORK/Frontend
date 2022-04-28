@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, CssBaseline, Typography, Box } from "@mui/material/";
-import { Link } from "react-router-dom";
+import Link from 'next/link';
 import { useRouter } from "next/router";
 import logo from "../../assets/logo_wn.png";
 import Image from "next/image";
@@ -60,9 +60,20 @@ const NavBar = () => {
           >
             หน้าหลัก
           </Typography>
-          {/* <Typography variant={"h5"} onClick={clickHandler} style={{textDecoration: "none", cursor: "pointer", color: "white",marginLeft: "80px", fontFamily: 'Roboto',}}>
-                เกี่ยวกับ
-              </Typography> */}
+          <Link href="/about" passHref>
+            <Typography
+              variant={"h5"}
+              style={{
+                textDecoration: "none",
+                cursor: "pointer",
+                color: "white",
+                marginLeft: "80px",
+                fontFamily: "Roboto",
+              }}
+            >
+              เกี่ยวกับ
+            </Typography>
+          </Link>
         </div>
       </Toolbar>
     </AppBar>
