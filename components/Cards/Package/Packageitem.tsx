@@ -14,7 +14,7 @@ function Packageitem(props: any) {
     <Card
       variant="outlined"
       sx={{
-        maxHeight: 200,
+        maxHeight: 250,
         minWidth: 300,
         backgroundColor: "rgba(197, 198, 228, 0.2)",
         margin: 5,
@@ -29,7 +29,7 @@ function Packageitem(props: any) {
       <CardActionArea>
         <Box
           sx={{
-            minHeight: 55,
+            minHeight: 100,
             // backgroundColor: "secondary.dark",
             background:
               "linear-gradient(90deg, rgba(140,102,241,1) 0%, rgba(168,84,246,1) 50%, rgba(170,72,200,1) 100%)",

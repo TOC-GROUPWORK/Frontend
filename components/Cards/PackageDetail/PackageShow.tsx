@@ -18,15 +18,18 @@ import PackageList from "../Package/PackageList";
 import PackageDetailList from "./PackageDetailList";
 
 const PackageShow = ({ packages, link }: any) => {
+  console.log(packages);
+
   const PackageModal = styled(Modal)`
     position: fixed;
-    width: 1500px;
+    width: 80vw;
+    height: 950px;
     z-index: 1040;
     border: 1px solid #e5e5e5;
     background-color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     padding: 20px;
-    top: 5%;
+    top: 1%;
     left: 10%;
     display: flex;
     flex-wrap: no-wrap;
@@ -60,13 +63,16 @@ const PackageShow = ({ packages, link }: any) => {
         <CardActionArea>
           <Box
             sx={{
-              minHeight: 55,
+              minHeight: 110,
               // backgroundColor: "secondary.dark",
               // backgroundColor: "#A853F4",
               background:
                 "linear-gradient(90deg, rgba(140,102,241,1) 0%, rgba(168,84,246,1) 60%, rgba(190,72,183,1) 100%)",
               // backgroundColor: "rgb(130, 133, 224)",
               pt: 1.5,
+              // display: "flex",
+              // flexDirection: "column",
+              // justifyContent: "center",
             }}
           >
             <Typography variant="h6" color="common.white" textAlign="center">
@@ -80,7 +86,15 @@ const PackageShow = ({ packages, link }: any) => {
           >
             <Typography variant="h5" color="common.black" textAlign="center">
               <br></br>
-              {packages.promotions[packageNumber].detail} ฿
+              {packages.promotions[packageNumber].packages.length > 0 &&
+              packages.promotions[packageNumber].packages[packageDetailNumber]
+                .specialprice
+                ? "เริ่มต้น " +
+                  packages.promotions[packageNumber].packages[
+                    packageDetailNumber
+                  ].specialprice.toLocaleString()
+                : packages.promotions[packageNumber].name}{" "}
+              ฿
             </Typography>
             <Typography variant="h6" color="common.black" textAlign="center">
               ค่าบริการล่วงหน้า <br></br>
@@ -106,30 +120,34 @@ const PackageShow = ({ packages, link }: any) => {
           <Typography variant="h5" color="common.black" textAlign="center">
             STEP 1 : เลือกโปรโมชั่น
           </Typography>
-          <div style={{ display: "flex", width: "1450px" }}>
+
+          <div style={{ display: "flex", width: "75vw" }}>
             <PackageList
               promotions={packages.promotions}
               handleClick={handlePackageSelect}
               packageNumber={packageNumber}
               handlePackageDetailSelect={handlePackageDetailSelect}
             />
-            <div style={{ display: "flex", width: "1400px" }}></div>
-            <Typography variant="h5" color="common.black" textAlign="center">
-              STEP 2 : เลือกแพ็คเกจ
-            </Typography>
-            <div style={{ display: "flex", width: "1450px" }}>
-              <PackageDetailList
-                packages={packages.promotions[packageNumber].packages}
-                packageNumber={packageNumber}
-                packageDetailNumber={packageDetailNumber}
-                handlePackageDetailSelect={handlePackageDetailSelect}
-              />
-            </div>
           </div>
+          <Typography variant="h5" color="common.black" textAlign="center">
+            {packages.promotions[packageNumber].packages.length > 0
+              ? "STEP 2 : เลือกแพ็คเกจ"
+              : "ไม่มีแพ็คเกจให้ท่านเลือก"}
+          </Typography>
+          <div style={{ display: "flex", width: "75vw", height: "400px" }}>
+            <PackageDetailList
+              packages={packages.promotions[packageNumber].packages}
+              packageNumber={packageNumber}
+              packageDetailNumber={packageDetailNumber}
+              handlePackageDetailSelect={handlePackageDetailSelect}
+            />
+          </div>
+
           <Button
             onClick={() => {
               setShow(false);
             }}
+            variant="contained"
           >
             Save
           </Button>
@@ -143,7 +161,7 @@ const PackageShow = ({ packages, link }: any) => {
           mt: 2,
         }}
       >
-        <Divider>ราคาเริ่มต้น</Divider>
+        <Divider sx={{ color: "gray" }}>ราคาเริ่มต้น</Divider>
         <Typography variant="h6" color="common.black" textAlign="center">
           {packages.promotions[packageNumber].packages.length > 0
             ? packages.promotions[packageNumber].packages[
@@ -155,7 +173,7 @@ const PackageShow = ({ packages, link }: any) => {
           ฿
         </Typography>
 
-        <Divider>ค่าบริการล่วงหน้า</Divider>
+        <Divider sx={{ color: "gray" }}>ค่าบริการล่วงหน้า</Divider>
         <Typography variant="h6" color="common.black" textAlign="center">
           {packages.promotions[packageNumber].packages.length > 0
             ? packages.promotions[packageNumber].packages[
@@ -165,7 +183,7 @@ const PackageShow = ({ packages, link }: any) => {
           ฿
         </Typography>
 
-        <Divider>จำนวนเดือน</Divider>
+        <Divider sx={{ color: "gray" }}>จำนวนเดือน</Divider>
         <Typography variant="h6" color="common.black" textAlign="center">
           {packages.promotions[packageNumber].packages.length > 0
             ? packages.promotions[packageNumber].packages[
@@ -175,7 +193,7 @@ const PackageShow = ({ packages, link }: any) => {
           เดือน
         </Typography>
 
-        <Divider>ราคา/เดือน</Divider>
+        <Divider sx={{ color: "gray" }}>ราคา/เดือน</Divider>
         <Typography variant="h6" color="common.black" textAlign="center">
           {packages.promotions[packageNumber].packages.length > 0
             ? packages.promotions[packageNumber].packages[packageDetailNumber]
