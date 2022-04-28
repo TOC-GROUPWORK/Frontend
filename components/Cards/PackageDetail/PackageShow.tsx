@@ -271,11 +271,6 @@ const PackageShow = ({
         </Typography>
         <Divider color={"#CCC"} />
         <Divider color={"#CCC"} />
-        {/* <a href={link}>
-          <Button variant="contained" sx={{ width: "100%" }}>
-            ซื้อเลย
-          </Button>
-        </a> */}
       </Stack>
     </div>
   );
