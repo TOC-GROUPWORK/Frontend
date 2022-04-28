@@ -4,6 +4,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 function Packageitem(props: any) {
   const { index, PackageName, PackageDetail } = props;
@@ -51,6 +53,27 @@ function Packageitem(props: any) {
           <Typography sx={{ fontSize: 18, p: 4 }} color="black">
             {PackageDetail}
           </Typography>
+          {props.packageNumber == props.index ? (
+            <Box
+              sx={{ minHeight: 40 }}
+              display="flex"
+              justifyContent="flex-end"
+              marginRight="10px"
+              alignItems="flex-end"
+            >
+              <CheckCircleIcon />
+            </Box>
+          ) : (
+            <Box
+              sx={{ minHeight: 40 }}
+              display="flex"
+              justifyContent="flex-end"
+              marginRight="10px"
+              alignItems="flex-end"
+            >
+              <CheckCircleOutlineIcon />
+            </Box>
+          )}
         </Box>
       </CardActionArea>
     </Card>

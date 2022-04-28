@@ -110,18 +110,21 @@ const PackageShow = ({ packages, link }: any) => {
             <PackageList
               promotions={packages.promotions}
               handleClick={handlePackageSelect}
-              handlePackageDetailSelect={handlePackageDetailSelect}
-            />
-          </div>
-          <Typography variant="h5" color="common.black" textAlign="center">
-            STEP 2 : เลือกแพ็คเกจ
-          </Typography>
-          <div style={{ display: "flex", width: "1450px" }}>
-            <PackageDetailList
-              packages={packages.promotions[packageNumber].packages}
               packageNumber={packageNumber}
               handlePackageDetailSelect={handlePackageDetailSelect}
             />
+            <div style={{ display: "flex", width: "1400px" }}></div>
+            <Typography variant="h5" color="common.black" textAlign="center">
+              STEP 2 : เลือกแพ็คเกจ
+            </Typography>
+            <div style={{ display: "flex", width: "1450px" }}>
+              <PackageDetailList
+                packages={packages.promotions[packageNumber].packages}
+                packageNumber={packageNumber}
+                packageDetailNumber={packageDetailNumber}
+                handlePackageDetailSelect={handlePackageDetailSelect}
+              />
+            </div>
           </div>
           <Button
             onClick={() => {

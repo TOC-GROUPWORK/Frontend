@@ -1,10 +1,11 @@
 import PackageDetailItem from "./PackageDetailitem";
 import Box from "@mui/material/Box";
-import { ImageList, ImageListItem } from "@mui/material";
+import { ImageList } from "@mui/material";
 
 function PackageList(props: {
   packages: any[];
   packageNumber: any;
+  packageDetailNumber: any;
   handlePackageDetailSelect: any;
 }) {
   const { packages, packageNumber } = props;
@@ -32,6 +33,7 @@ function PackageList(props: {
             PackageDetail={details !== undefined ? details.prepaid : ""}
             PackageContract={details !== undefined ? details.package_type : ""}
             Package={details !== undefined ? details.package : ""}
+            packageDetailNumber={props.packageDetailNumber}
             handlePackageDetailSelect={props.handlePackageDetailSelect}
           />
         );
