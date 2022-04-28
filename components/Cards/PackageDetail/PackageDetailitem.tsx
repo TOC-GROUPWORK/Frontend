@@ -4,6 +4,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button, CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 function PackageDetailItem(props: any) {
  const [select, setSelect] = React.useState(false);
@@ -63,22 +65,11 @@ function PackageDetailItem(props: any) {
             ค่าบริการ {props.Package} ฿ / เดือน
           </Typography>
         </Box>
-        {select ? (<Box sx={{ minHeight: 40 }}>
-          <Typography
-            sx={{ fontSize: 20, pt: 1 }}
-            color="black"
-            textAlign="right"
-          >
-            ติ๊กถูก
-          </Typography>
-        </Box>) : (<Box sx={{ minHeight: 40 }}>
-          <Typography
-            sx={{ fontSize: 20, pt: 1 }}
-            color="black"
-            textAlign="right"
-          >
-            ไม่ติ๊กถูก
-          </Typography>
+        {props.packageDetailNumber == props.index ? (
+        <Box sx={{ minHeight: 40 }} display="flex" justifyContent="flex-end" marginRight="10px">
+          <CheckCircleIcon />
+        </Box>) : (<Box sx={{ minHeight: 40 }} display="flex" justifyContent="flex-end" marginRight="10px">
+         <CheckCircleOutlineIcon />
         </Box>)}
         
       </CardActionArea>

@@ -107,12 +107,14 @@ const PackageShow = ({ packages, link }: any) => {
           <PackageList
             promotions={packages.promotions}
             handleClick={handlePackageSelect}
+            packageNumber={packageNumber}
             handlePackageDetailSelect={handlePackageDetailSelect}
           />
           <div style={{display: "flex", width: "1400px"}}>
           <PackageDetailList
             packages={packages.promotions[packageNumber].packages}
             packageNumber={packageNumber}
+            packageDetailNumber={packageDetailNumber}
             handlePackageDetailSelect={handlePackageDetailSelect}
           />
           </div>
