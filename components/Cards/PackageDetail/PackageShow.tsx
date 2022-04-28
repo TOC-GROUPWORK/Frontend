@@ -84,10 +84,13 @@ const PackageShow = ({ packages, link }: any) => {
             </Typography>
             <Typography variant="h6" color="common.black" textAlign="center">
               ค่าบริการล่วงหน้า <br></br>
-              {
-                packages.promotions[packageNumber].packages[packageDetailNumber]
-                  .prepaid
-              }{" "}
+              {packages.promotions[packageNumber].packages.length > 0
+                ? packages.promotions[packageNumber].packages[
+                    packageDetailNumber
+                  ].prepaid
+                    .replace("None", "-")
+                    .toLocaleString()
+                : "-"}{" "}
               ฿
             </Typography>
           </Box>
@@ -124,43 +127,50 @@ const PackageShow = ({ packages, link }: any) => {
       </PackageModal>
 
       {/* summery result */}
-      <Stack spacing={2}
+      <Stack
+        spacing={2}
         sx={{
           mt: 2,
         }}
       >
         <Divider>ราคาเริ่มต้น</Divider>
         <Typography variant="h6" color="common.black" textAlign="center">
-          {
-            packages.promotions[packageNumber].packages[packageDetailNumber]
-              .specialprice
-          }{" "}
+          {packages.promotions[packageNumber].packages.length > 0
+            ? packages.promotions[packageNumber].packages[
+                packageDetailNumber
+              ].specialprice.toLocaleString()
+            : parseFloat(
+                packages.promotions[packageNumber].detail.replace(/\D/g, "")
+              ).toLocaleString()}{" "}
           ฿
         </Typography>
 
         <Divider>ค่าบริการล่วงหน้า</Divider>
         <Typography variant="h6" color="common.black" textAlign="center">
-          {
-            packages.promotions[packageNumber].packages[packageDetailNumber]
-              .prepaid
-          }{" "}
+          {packages.promotions[packageNumber].packages.length > 0
+            ? packages.promotions[packageNumber].packages[
+                packageDetailNumber
+              ].prepaid.replace("None", "-")
+            : "-"}{" "}
           ฿
         </Typography>
 
         <Divider>จำนวนเดือน</Divider>
         <Typography variant="h6" color="common.black" textAlign="center">
-          {packages.promotions[packageNumber].packages[
-            packageDetailNumber
-          ].package_type.replace(/\D/g, "")}{" "}
+          {packages.promotions[packageNumber].packages.length > 0
+            ? packages.promotions[packageNumber].packages[
+                packageDetailNumber
+              ].package_type.replace(/\D/g, "")
+            : "-"}{" "}
           เดือน
         </Typography>
 
         <Divider>ราคา/เดือน</Divider>
         <Typography variant="h6" color="common.black" textAlign="center">
-          {
-            packages.promotions[packageNumber].packages[packageDetailNumber]
-              .package
-          }{" "}
+          {packages.promotions[packageNumber].packages.length > 0
+            ? packages.promotions[packageNumber].packages[packageDetailNumber]
+                .package
+            : "-"}{" "}
           ฿ / เดือน
         </Typography>
 
@@ -177,32 +187,41 @@ const PackageShow = ({ packages, link }: any) => {
           />
         </Divider>
         <Typography variant="h4" color="common.black" textAlign="center">
-          {(
-            parseFloat(
-              packages.promotions[packageNumber].packages[
-                packageDetailNumber
-              ].specialprice.replace(/,/g, "")
-            ) +
-            parseFloat(
-              packages.promotions[packageNumber].packages[
-                packageDetailNumber
-              ].prepaid
-                .replace(/,/g, "")
-                .replace(/-/g, "0")
-            ) +
-            parseFloat(
-              packages.promotions[packageNumber].packages[
-                packageDetailNumber
-              ].package_type
-                .replace(/\D/g, "")
-                .replace(/,/g, "")
-            ) *
-              parseFloat(
-                packages.promotions[packageNumber].packages[
-                  packageDetailNumber
-                ].package.replace(/,/g, "")
-              )
-          ).toLocaleString()}{" "}
+          {packages.promotions[packageNumber].packages.length > 0
+            ? (
+                parseFloat(
+                  packages.promotions[packageNumber].packages[
+                    packageDetailNumber
+                  ].specialprice
+                    .replace(/\D/g, "")
+                    .replace(/,/g, "")
+                ) +
+                parseFloat(
+                  packages.promotions[packageNumber].packages[
+                    packageDetailNumber
+                  ].prepaid
+                    .replace("None", "-")
+                    .replace(/,/g, "")
+                    .replace(/-/g, "0")
+                ) +
+                parseFloat(
+                  packages.promotions[packageNumber].packages[
+                    packageDetailNumber
+                  ].package_type
+                    .replace(/\D/g, "")
+                    .replace(/,/g, "")
+                ) *
+                  parseFloat(
+                    packages.promotions[packageNumber].packages[
+                      packageDetailNumber
+                    ].package
+                      .replace(/\D/g, "")
+                      .replace(/,/g, "")
+                  )
+              ).toLocaleString()
+            : parseFloat(
+                packages.promotions[packageNumber].detail.replace(/\D/g, "")
+              ).toLocaleString()}{" "}
           ฿
         </Typography>
         <hr />

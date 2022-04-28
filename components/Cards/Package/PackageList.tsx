@@ -18,7 +18,7 @@ function PackageList(props: {
       }}
     >
       {promotions.map((packageDetail, index) => {
-        if (index < promotions.length - 1) {
+        if (index < promotions.length) {
           return (
             <Packageitem
               key={index}
