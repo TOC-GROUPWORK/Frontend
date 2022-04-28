@@ -311,6 +311,18 @@ export const getStaticPaths = async () => {
           phoneId: "62585b72d338a6435c9b543b",
         },
       },
+      {
+        params: {
+          brandId: "62585a9dd338a6435c9b5426",
+          phoneId: "62585baed338a6435c9b54b2",
+        },
+      },
+      {
+        params: {
+          brandId: "62585a9dd338a6435c9b5426",
+          phoneId: "62585bf8d338a6435c9b554e",
+        },
+      },
     ],
   };
 };
