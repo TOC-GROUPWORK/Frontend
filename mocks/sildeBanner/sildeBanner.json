@@ -1,0 +1,63 @@
+[
+  {
+    "id": 0,
+    "model": "iPhone 13 Pro Max",
+    "link": "https://store.truecorp.co.th/online-store/item/L91759660?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/4a9bed760e35065e960f286e73e7d3da/iphone_13_pro_max_alpine_green_pdp_position-1a_alpine_green_color__th.jpg"
+  },
+  {
+    "id": 1,
+    "model": "iPhone 13 Pro Max",
+    "link": "https://store.truecorp.co.th/online-store/item/L91759660?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/9267183767dd31b145c790f281cd806d/iphone_13_pro_max_pdp_position-1a_color_gold__th.jpg"
+  },
+  {
+    "id": 5,
+    "model": "Samsung Galaxy Tab A7 Lite",
+    "link": "https://store.truecorp.co.th/online-store/item/L91761736?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/dedbd66309f15840794e6f4617b41bd2/007_galaxy_tab_a7_lite_lte_gray_v_front.jpg"
+  },
+  {
+    "id": 6,
+    "model": "Samsung Galaxy Tab A7 Lite",
+    "link": "https://store.truecorp.co.th/online-store/item/L91761736?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/f7ad8b9a7a3cea1d477b98b00709a88e/006_galaxy_tab_a7_lite_lte_gray_v_back.jpg"
+  },
+
+  {
+    "id": 7,
+    "model": "moto g31",
+    "link": "https://store.truecorp.co.th/online-store/item/L91765226?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/0c839b57296fab49ac4d5b88b2b5cf4d/2021_corfu_lite_basic-pack_meteorite-gray_dyn_frontside-left.jpg"
+  },
+  {
+    "id": 8,
+    "model": "moto g31",
+    "link": "https://store.truecorp.co.th/online-store/item/L91765226?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/ee020680ba0ac93ede62be4f1866ce69/2021_corfu_lite_basic-pack_meteorite-gray_dyn_backside-right.jpg"
+  },
+  {
+    "id": 2,
+    "model": "iPhone 13 Pro Max",
+    "link": "https://store.truecorp.co.th/online-store/item/L91759660?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/b9775c54d5ee383be8224d11fb5f648c/iphone_13_pro_max_pdp_position-1a_color_sierra_blue__th.jpg"
+  },
+  {
+    "id": 4,
+    "model": "iPhone 13 Pro Max",
+    "link": "https://store.truecorp.co.th/online-store/item/L91759660?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/a4644c2f4b2675538b3df77debd09281/iphone_13_pro_max_pdp_position-1a_color_graphite__th.jpg"
+  },
+  {
+    "id": 9,
+    "model": "Tecno POVA 5G - Black",
+    "link": "https://store.truecorp.co.th/online-store/item/L91765730?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/b0b521e8cef18bd411162143b036f374/6-t-tecnopova5g.jpg"
+  },
+  {
+    "id": 10,
+    "model": "Tecno POVA 5G - Black",
+    "link": "https://store.truecorp.co.th/online-store/item/L91765730?ln=th",
+    "pictures": "https://cdn-img.wemall.com/943745/w_1400,h_1400,c_thumb/ee99d3c981e9dd45a97a29e0cd9f7be8/7-t-tecnopova5g.jpg"
+  }
+]

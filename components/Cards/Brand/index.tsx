@@ -1,39 +1,51 @@
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
-import { CardProps } from '../';
-import React from 'react'
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { CardProps } from "../../../interfaces";
+import React from "react";
+import { useRouter } from "next/router";
 
+const Brand: React.FC<CardProps> = ({ _id, img, name }) => {
+  const router = useRouter();
 
-const Brand:React.FC<CardProps> = ({ id, img, name }) => {
-    return (
-        <Card
-            sx={{
-                justifyContent:'center',
-                alignItems:'center',
-            }}
-            onClick={()=>console.log("click")}
-        >
-            <CardMedia
-                component={'img'}
-                image={img}
-                alt={name}
-                width={'200px'}
-                height={'200px'}
-                sx={{
-                    objectFit:'contain',
-                    '&:hover': { cursor: 'pointer' },
-                }}
-            />
-            <CardContent>
-                <Typography
-                    variant='h5'
-                    textAlign={'center'}
-                >
-                    {name}
-                </Typography>
-            </CardContent>
+  //Handle Click events
+  const clickHandler = () => {
+    router.push("/brands/" + _id);
+  };
 
-        </Card>
-    );
-}
+  return (
+    <Card
+      sx={{
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+      }}
+      onClick={clickHandler}
+    >
+      <CardMedia
+        component={"img"}
+        image={img}
+        alt={name}
+        width={"200px"}
+        height={"200px"}
+        sx={{
+          objectFit: "contain",
+          "&:hover": { cursor: "pointer" },
+        }}
+      />
+      <CardContent>
+        <Typography
+          variant="h5"
+          textAlign={"center"}
+          sx={{
+            display: '-webkit-box',
+            overflow: 'hidden',
+            WebkitBoxOrient: 'vertical',
+            WebkitLineClamp: 2,
+          }}>
+          {name}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+};
 
 export default Brand;
