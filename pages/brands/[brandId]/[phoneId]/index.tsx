@@ -307,8 +307,8 @@ export const getStaticPaths = async () => {
     paths: [
       {
         params: {
-          brandId: "apple",
-          phoneId: "1001",
+          brandId: "62585a9dd338a6435c9b5426",
+          phoneId: "62585b72d338a6435c9b543b",
         },
       },
     ],

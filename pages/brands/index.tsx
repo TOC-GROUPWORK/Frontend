@@ -105,14 +105,10 @@ const Home: React.FC<BrandProps> = ({ brands }) => {
                   item
                   xs={4}
                   key={brand._id}
-                // justifyContent="center"
-                // alignItems="center"
+                  // justifyContent="center"
+                  // alignItems="center"
                 >
-                  <Brand
-                    _id={brand._id}
-                    name={brand.name}
-                    img={brand.img}
-                  />
+                  <Brand _id={brand._id} name={brand.name} img={brand.img} />
                 </Grid>
               );
             })
