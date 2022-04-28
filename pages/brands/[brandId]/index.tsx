@@ -95,8 +95,8 @@ const PhonePage = ({ phones }: PhonesProps) => {
         <Grid
           container
           direction="row"
-          alignItems={"center"}
           justifyContent={"center"}
+          alignItems={"stretch"}
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
           paddingTop={"3em"}
@@ -108,14 +108,13 @@ const PhonePage = ({ phones }: PhonesProps) => {
                   item
                   xs={4}
                   key={phone._id}
-                  justifyContent="center"
-                  alignItems="center"
+                // justifyContent="center"
+                // alignItems="center"
                 >
                   <Phone
                     _id={phone._id}
                     name={phone.name}
                     img={phone.img[0]}
-                    key={phone._id}
                   />
                 </Grid>
               );

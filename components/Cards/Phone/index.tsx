@@ -16,6 +16,7 @@ const Phone: React.FC<CardProps> = ({ _id, img, name }) => {
       sx={{
         justifyContent: "center",
         alignItems: "center",
+        height: "100%",
       }}
       onClick={clickHandler}
     >
@@ -31,7 +32,15 @@ const Phone: React.FC<CardProps> = ({ _id, img, name }) => {
         }}
       />
       <CardContent>
-        <Typography variant="h5" textAlign={"center"}>
+        <Typography
+          variant="h5"
+          textAlign={"center"}
+          sx={{
+            display: '-webkit-box',
+            overflow: 'hidden',
+            WebkitBoxOrient: 'vertical',
+            WebkitLineClamp: 2,
+          }}>
           {name}
         </Typography>
       </CardContent>
