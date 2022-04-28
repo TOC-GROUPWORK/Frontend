@@ -9,6 +9,7 @@ import {
   Chip,
   Stack,
 } from "@mui/material";
+import { width } from "@mui/system";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Modal from "react-overlays/Modal";
@@ -97,6 +98,7 @@ const PackageShow = ({ packages, link }: any) => {
         show={show}
         onHide={() => setShow(false)}
         aria-labelledby="modal-label"
+        
       >
         <div>
           <PackageList
@@ -104,11 +106,13 @@ const PackageShow = ({ packages, link }: any) => {
             handleClick={handlePackageSelect}
             handlePackageDetailSelect={handlePackageDetailSelect}
           />
+          <div style={{display: "flex", width: "1400px"}}>
           <PackageDetailList
             packages={packages.promotions[packageNumber].packages}
             packageNumber={packageNumber}
             handlePackageDetailSelect={handlePackageDetailSelect}
           />
+          </div>
           <button
             onClick={() => {
               setShow(false);

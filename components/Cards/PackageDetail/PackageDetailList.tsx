@@ -1,5 +1,6 @@
-import PackageDetailitem from "./PackageDetailitem";
+import PackageDetailItem from "./PackageDetailitem";
 import Box from "@mui/material/Box";
+import { ImageList, ImageListItem } from "@mui/material";
 
 function PackageList(props: {
   packages: any[];
@@ -11,18 +12,22 @@ function PackageList(props: {
   console.log(packages);
 
   return (
-    <Box
+    <ImageList
       sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
+        // display: "flex",
+        // flexDirection: "row",
+        // justifyContent: "flex-start",
+        gridAutoFlow: "column",
+    gridTemplateColumns: "repeat(auto-fill,minmax(350px,1fr)) !important",
+    gridAutoColumns: "minmax(350px, 1fr)",
+    width: 2400,
       }}
     >
       {packages.map((packagesdetail: any, index: number) => {
         const details = packagesdetail;
 
         return (
-          <PackageDetailitem
+            <PackageDetailItem
             key={index}
             index={index}
             PackagePrice={details !== undefined ? details.specialprice : ""}
@@ -33,7 +38,8 @@ function PackageList(props: {
           />
         );
       })}
-    </Box>
+    </ImageList>
+
   );
 }
 

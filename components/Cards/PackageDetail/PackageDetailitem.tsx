@@ -2,22 +2,24 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { CardActionArea } from "@mui/material";
+import { Button, CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-function PackageDetailitem(props: any) {
+function PackageDetailItem(props: any) {
+ const [select, setSelect] = React.useState(false);
   return (
     <Card
       variant="outlined"
       sx={{
-        maxHeight: 250,
-        minWidth: 456,
+        maxHeight: 400,
+        minWidth: 300,
         backgroundColor: "rgba(197, 198, 228, 0.2)",
         margin: 5,
         borderColor: "grey.500",
         borderRadius: 3,
       }}
-      onClick={() => props.handlePackageDetailSelect(props.index)}
+      onClick={() => {props.handlePackageDetailSelect(props.index)
+      setSelect(!select)}}
     >
       <CardActionArea>
         <Box
@@ -37,12 +39,12 @@ function PackageDetailitem(props: any) {
             {props.PackagePrice} ฿
           </Typography>
         </Box>
-        <Box sx={{ minHeight: 54, maxWidth: 456, pt: 1 }}>
+        <Box sx={{ minHeight: 50, maxWidth: 456, pt: 1 }}>
           <Typography sx={{ fontSize: 20 }} color="black" textAlign="center">
             ค่าบริการล่วงหน้า {props.PackageDetail} ฿
           </Typography>
         </Box>
-        <Box sx={{ minHeight: 60 }}>
+        <Box sx={{ minHeight: 50 }}>
           <Typography
             sx={{ fontSize: 20, pt: 1 }}
             color="black"
@@ -51,7 +53,7 @@ function PackageDetailitem(props: any) {
             ระยะเวลาสัญญา {props.PackageContract} เดือน
           </Typography>
         </Box>
-        <Box sx={{ minHeight: 60 }}>
+        <Box sx={{ minHeight: 50 }}>
           <Typography
             sx={{ fontSize: 20, pt: 1 }}
             color="black"
@@ -60,7 +62,7 @@ function PackageDetailitem(props: any) {
             ค่าบริการ {props.Package} ฿ / เดือน
           </Typography>
         </Box>
-        <Box sx={{ minHeight: 40 }}>
+        {select ? (<Box sx={{ minHeight: 40 }}>
           <Typography
             sx={{ fontSize: 20, pt: 1 }}
             color="black"
@@ -68,10 +70,19 @@ function PackageDetailitem(props: any) {
           >
             ติ๊กถูก
           </Typography>
-        </Box>
+        </Box>) : (<Box sx={{ minHeight: 40 }}>
+          <Typography
+            sx={{ fontSize: 20, pt: 1 }}
+            color="black"
+            textAlign="right"
+          >
+            ไม่ติ๊กถูก
+          </Typography>
+        </Box>)}
+        
       </CardActionArea>
     </Card>
   );
 }
 
-export default PackageDetailitem;
+export default PackageDetailItem;
